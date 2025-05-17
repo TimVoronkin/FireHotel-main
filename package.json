@@ -1,0 +1,15 @@
+{
+  "name": "firebox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "/",
+  "scripts": {
+    "format": "prettier --write ."
+  },
+  "author": "TimVoronkin",
+  "license": "ISC",
+  "dependencies": {
+    "@react-google-maps/api": "^2.20.6",
+    "prettier": "^3.4.1"
+  }
+}
