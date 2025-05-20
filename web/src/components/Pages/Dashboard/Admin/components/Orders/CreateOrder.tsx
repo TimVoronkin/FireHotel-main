@@ -14,6 +14,10 @@ function CreateOrder() {
   const [email, setEmail] = useState<string>('');
   const [cellId, setCellId] = useState<string>('');
   const [lockerId, setLockerId] = useState<string>('');
+  const [dateFrom, setDateFrom] = useState<string>('');
+  const [dateTo, setDateTo] = useState<string>('');
+  const [name, setName] = useState<string>('');
+  const [surname, setSurname] = useState<string>('');
   const [errors, setErrors] = useState<string[]>([]);
   const [isValid, setIsValid] = useState(false);
 
@@ -53,10 +57,18 @@ function CreateOrder() {
       email,
       cell_id: parseInt(cellId),
       locker_id: parseInt(lockerId),
+      DateFrom: dateFrom,
+      DateTo: dateTo,
+      Name: name,
+      Surname: surname,
     };
     setEmail('');
     setCellId('');
     setLockerId('');
+    setDateFrom('');
+    setDateTo('');
+    setName('');
+    setSurname('');
     setErrors([]);
     setIsValid(false);
     const res = await createOrder(order, user_id);
@@ -74,12 +86,16 @@ function CreateOrder() {
       if (!email.trim() || !/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) errors.push('Valid e-mail is required');
       if (!cellId.trim() || isNaN(Number(cellId))) errors.push('Valid Cell ID is required');
       if (!lockerId.trim() || isNaN(Number(lockerId))) errors.push('Valid Locker ID is required');
+      if (!dateFrom.trim()) errors.push('Date From is required');
+      if (!dateTo.trim()) errors.push('Date To is required');
+      if (!name.trim()) errors.push('Name is required');
+      if (!surname.trim()) errors.push('Surname is required');
       return errors;
     };
     const validationErrors = validateForm();
     setErrors(validationErrors);
     setIsValid(validationErrors.length === 0);
-  }, [email, cellId, lockerId]);
+  }, [email, cellId, lockerId, dateFrom, dateTo, name, surname]);
 
   return (
     <>
@@ -91,17 +107,14 @@ function CreateOrder() {
           <Dialog.Title>Create Order</Dialog.Title>
           <Dialog.Description className="mb-5">Fill in the information to add an order.</Dialog.Description>
           <div className="grid grid-cols-2 gap-4">
-            <TextField.Root required placeholder="Receiver E-mail *" value={email} onChange={(e) => setEmail(e.target.value)} />
             <Select.Root value={lockerId} onValueChange={setLockerId} required>
-              <div></div>
+            
               <Select.Trigger placeholder="Select Locker *" />
               <Select.Content>
                 {lockerOptions.map((locker) => (
-                  // ...existing code...
                   <Select.Item key={locker.id} value={locker.id.toString()}>
                     {locker.name ? `#${locker.id} - ${locker.location} "${locker.name}"` : locker.id}
                   </Select.Item>
-                  // ...existing code...
                 ))}
               </Select.Content>
             </Select.Root>
@@ -115,6 +128,14 @@ function CreateOrder() {
                 ))}
               </Select.Content>
             </Select.Root>
+            <TextField.Root required placeholder="Date From *" type="date" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} />
+            <TextField.Root required placeholder="Date To *" type="date" value={dateTo} onChange={(e) => setDateTo(e.target.value)} />
+
+            <TextField.Root required placeholder="Name *" value={name} onChange={(e) => setName(e.target.value)} />
+            <TextField.Root required placeholder="Surname *" value={surname} onChange={(e) => setSurname(e.target.value)} />
+
+
+            <TextField.Root required placeholder="Receiver E-mail *" value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
           {!isValid && (
             <div className="text-red-500">

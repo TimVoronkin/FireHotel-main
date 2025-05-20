@@ -18,6 +18,18 @@ export class CreateOrderDto {
   @IsNumber()
   @ApiProperty({ description: 'Worker id', example: 1, required: true })
   worker_id: number;
+
+  @ApiProperty({ description: 'Date From', example: '2025-05-17', required: true })
+  DateFrom: string;
+
+  @ApiProperty({ description: 'Date To', example: '2025-05-20', required: true })
+  DateTo: string;
+
+  @ApiProperty({ description: 'Name', example: 'Ivan', required: true })
+  Name: string;
+
+  @ApiProperty({ description: 'Surname', example: 'Ivanov', required: true })
+  Surname: string;
 }
 
 export class UpdateOrderDto {
@@ -33,6 +45,18 @@ export class UpdateOrderDto {
 
   @ApiProperty({ description: 'Locker id', example: 1, required: false })
   locker_id: number;
+
+  @ApiProperty({ description: 'Date From', example: '2025-05-17', required: false })
+  DateFrom: string;
+
+  @ApiProperty({ description: 'Date To', example: '2025-05-20', required: false })
+  DateTo: string;
+
+  @ApiProperty({ description: 'Name', example: 'Ivan', required: false })
+  Name: string;
+
+  @ApiProperty({ description: 'Surname', example: 'Ivanov', required: false })
+  Surname: string;
 }
 
 export class DeleteOrderDto {

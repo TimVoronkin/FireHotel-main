@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const swagger_1 = require("@nestjs/swagger");
 const common_1 = require("@nestjs/common");
 async function bootstrap() {
+    var _a;
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.setGlobalPrefix('api');
     app.useGlobalPipes(new common_1.ValidationPipe());
@@ -25,7 +26,7 @@ async function bootstrap() {
         .build();
     const document = swagger_1.SwaggerModule.createDocument(app, config);
     swagger_1.SwaggerModule.setup('docs', app, document);
-    await app.listen(process.env.PORT ?? 3000);
+    await app.listen((_a = process.env.PORT) !== null && _a !== void 0 ? _a : 3000);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map

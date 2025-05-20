@@ -3,4 +3,8 @@ export declare class Order {
     orderUuid: string | null;
     cell_id: number;
     locker_id: number;
+    DateFrom: string;
+    DateTo: string;
+    Name: string;
+    Surname: string;
 }

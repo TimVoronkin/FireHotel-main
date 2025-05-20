@@ -36,6 +36,22 @@ __decorate([
     (0, swagger_1.ApiProperty)({ description: 'Worker id', example: 1, required: true }),
     __metadata("design:type", Number)
 ], CreateOrderDto.prototype, "worker_id", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ description: 'Date From', example: '2025-05-17', required: true }),
+    __metadata("design:type", String)
+], CreateOrderDto.prototype, "DateFrom", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ description: 'Date To', example: '2025-05-20', required: true }),
+    __metadata("design:type", String)
+], CreateOrderDto.prototype, "DateTo", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ description: 'Name', example: 'Ivan', required: true }),
+    __metadata("design:type", String)
+], CreateOrderDto.prototype, "Name", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ description: 'Surname', example: 'Ivanov', required: true }),
+    __metadata("design:type", String)
+], CreateOrderDto.prototype, "Surname", void 0);
 class UpdateOrderDto {
 }
 exports.UpdateOrderDto = UpdateOrderDto;
@@ -56,6 +72,22 @@ __decorate([
     (0, swagger_1.ApiProperty)({ description: 'Locker id', example: 1, required: false }),
     __metadata("design:type", Number)
 ], UpdateOrderDto.prototype, "locker_id", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ description: 'Date From', example: '2025-05-17', required: false }),
+    __metadata("design:type", String)
+], UpdateOrderDto.prototype, "DateFrom", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ description: 'Date To', example: '2025-05-20', required: false }),
+    __metadata("design:type", String)
+], UpdateOrderDto.prototype, "DateTo", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ description: 'Name', example: 'Ivan', required: false }),
+    __metadata("design:type", String)
+], UpdateOrderDto.prototype, "Name", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ description: 'Surname', example: 'Ivanov', required: false }),
+    __metadata("design:type", String)
+], UpdateOrderDto.prototype, "Surname", void 0);
 class DeleteOrderDto {
 }
 exports.DeleteOrderDto = DeleteOrderDto;

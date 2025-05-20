@@ -20,7 +20,7 @@ exports.AppDataSource = new typeorm_1.DataSource({
     synchronize: false,
     logging: true,
     entities: [Cells_1.Cells, Users_1.Users, Orders_1.Orders, Locker_1.Locker],
-    migrations: [__dirname + './src/migrations/*.{ts,js}'],
+    migrations: [__dirname + '/entities/*.ts'],
 });
 exports.AppDataSource.initialize()
     .then(() => {

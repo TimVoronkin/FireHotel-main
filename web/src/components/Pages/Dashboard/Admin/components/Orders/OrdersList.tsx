@@ -20,6 +20,10 @@ function OrdersList({ orders, isLoading }: { orders: Order[]; isLoading: boolean
             <Table.ColumnHeaderCell>Branch-Room ID</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell>Order Tracking ID</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell>Receiver Email</Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell>Date From</Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell>Date To</Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell>Surname</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell>Actions</Table.ColumnHeaderCell>
           </Table.Row>
         </Table.Header>
@@ -35,6 +39,10 @@ function OrdersList({ orders, isLoading }: { orders: Order[]; isLoading: boolean
                 <Table.Cell className="text-gray-500">{order.locker_id} - {order.cell_id}</Table.Cell>
                 <Table.Cell>{order.orderUuid}</Table.Cell>
                 <Table.Cell>{order.email}</Table.Cell>
+                <Table.Cell>{order.DateFrom}</Table.Cell>
+                <Table.Cell>{order.DateTo}</Table.Cell>
+                <Table.Cell>{order.Name}</Table.Cell>
+                <Table.Cell>{order.Surname}</Table.Cell>
                 <Table.Cell>
                   <div className="flex flex-row gap-5">
                     <UpdateOrder order={order} />

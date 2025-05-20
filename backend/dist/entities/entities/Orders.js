@@ -37,6 +37,22 @@ __decorate([
     __metadata("design:type", Number)
 ], Orders.prototype, "locker_id", void 0);
 __decorate([
+    (0, typeorm_1.Column)('date', { name: 'date_from', nullable: false }),
+    __metadata("design:type", Date)
+], Orders.prototype, "DateFrom", void 0);
+__decorate([
+    (0, typeorm_1.Column)('date', { name: 'date_to', nullable: false }),
+    __metadata("design:type", Date)
+], Orders.prototype, "DateTo", void 0);
+__decorate([
+    (0, typeorm_1.Column)('text', { name: 'name', nullable: false }),
+    __metadata("design:type", String)
+], Orders.prototype, "Name", void 0);
+__decorate([
+    (0, typeorm_1.Column)('text', { name: 'surname', nullable: false }),
+    __metadata("design:type", String)
+], Orders.prototype, "Surname", void 0);
+__decorate([
     (0, typeorm_1.OneToMany)(() => Cells_1.Cells, (cells) => cells.order),
     __metadata("design:type", Array)
 ], Orders.prototype, "cells", void 0);

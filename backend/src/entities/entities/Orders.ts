@@ -21,6 +21,18 @@ export class Orders {
   @Column('integer', { name: 'locker_id', nullable: false })
   locker_id: number;
 
+  @Column('date', { name: 'date_from', nullable: false })
+  DateFrom: Date;
+
+  @Column('date', { name: 'date_to', nullable: false })
+  DateTo: Date;
+
+  @Column('text', { name: 'name', nullable: false })
+  Name: string;
+
+  @Column('text', { name: 'surname', nullable: false })
+  Surname: string;
+
   @OneToMany(() => Cells, (cells) => cells.order)
   cells: Cells[];
 

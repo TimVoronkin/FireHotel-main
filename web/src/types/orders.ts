@@ -4,4 +4,8 @@ export interface Order {
   email: string;
   cell_id: number;
   locker_id: number;
+  DateFrom: string; // ISO date string
+  DateTo: string;   // ISO date string
+  Name: string;
+  Surname: string;
 }

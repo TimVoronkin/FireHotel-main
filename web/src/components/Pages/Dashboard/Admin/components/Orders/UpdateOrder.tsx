@@ -9,6 +9,10 @@ function UpdateOrder({ order }: { order?: import('@/types/orders').Order }) {
   const [cellId, setCellId] = useState<number>(0);
   const [email, setEmail] = useState<string>('');
   const [lockerId, setLockerId] = useState<number>(0);
+  const [dateFrom, setDateFrom] = useState<string>('');
+  const [dateTo, setDateTo] = useState<string>('');
+  const [name, setName] = useState<string>('');
+  const [surname, setSurname] = useState<string>('');
   const [errors, setErrors] = useState<string[]>([]);
   const [isValid, setIsValid] = useState(false);
 
@@ -17,6 +21,10 @@ function UpdateOrder({ order }: { order?: import('@/types/orders').Order }) {
     setCellId(0);
     setEmail('');
     setLockerId(0);
+    setDateFrom('');
+    setDateTo('');
+    setName('');
+    setSurname('');
     setErrors([]);
     setIsValid(false);
     const res = await updateOrder({
@@ -24,6 +32,10 @@ function UpdateOrder({ order }: { order?: import('@/types/orders').Order }) {
       cell_id: cellId !== 0 ? Number(cellId) : undefined,
       email: email !== '' ? email : undefined,
       locker_id: lockerId !== 0 ? Number(lockerId) : undefined,
+      DateFrom: dateFrom !== '' ? dateFrom : undefined,
+      DateTo: dateTo !== '' ? dateTo : undefined,
+      Name: name !== '' ? name : undefined,
+      Surname: surname !== '' ? surname : undefined,
     });
     if (res?.error) {
       toast.error(res.message);
@@ -39,6 +51,10 @@ function UpdateOrder({ order }: { order?: import('@/types/orders').Order }) {
       setCellId(order.cell_id || 0);
       setEmail(order.email || '');
       setLockerId(order.locker_id || 0);
+      setDateFrom(order.DateFrom || '');
+      setDateTo(order.DateTo || '');
+      setName(order.Name || '');
+      setSurname(order.Surname || '');
     }
   }, [order]);
 
@@ -47,12 +63,16 @@ function UpdateOrder({ order }: { order?: import('@/types/orders').Order }) {
       const errors = [];
       if (!tracknumber.trim()) errors.push('Track Number is required');
       if (email.length > 0 && !/\S+@\S+\.\S+/.test(email)) errors.push('Email is invalid');
+      if (!dateFrom.trim()) errors.push('Date From is required');
+      if (!dateTo.trim()) errors.push('Date To is required');
+      if (!name.trim()) errors.push('Name is required');
+      if (!surname.trim()) errors.push('Surname is required');
       return errors;
     };
     const validationErrors = validateForm();
     setErrors(validationErrors);
     setIsValid(validationErrors.length === 0);
-  }, [tracknumber, email]);
+  }, [tracknumber, email, dateFrom, dateTo, name, surname]);
   return (
     <>
       <Dialog.Root>
@@ -79,6 +99,10 @@ function UpdateOrder({ order }: { order?: import('@/types/orders').Order }) {
               value={lockerId}
               onChange={(e) => setLockerId(parseInt(e.target.value))}
             />
+            <TextField.Root required placeholder="Date From *" type="date" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} />
+            <TextField.Root required placeholder="Date To *" type="date" value={dateTo} onChange={(e) => setDateTo(e.target.value)} />
+            <TextField.Root required placeholder="Name *" value={name} onChange={(e) => setName(e.target.value)} />
+            <TextField.Root required placeholder="Surname *" value={surname} onChange={(e) => setSurname(e.target.value)} />
           </div>
           {!isValid && (
             <div className="text-red-500">

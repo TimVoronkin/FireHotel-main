@@ -30,4 +30,20 @@ __decorate([
     (0, swagger_1.ApiProperty)({ description: 'Locker ID', example: 1 }),
     __metadata("design:type", Number)
 ], Order.prototype, "locker_id", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ description: 'Date From', example: '2025-05-17' }),
+    __metadata("design:type", String)
+], Order.prototype, "DateFrom", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ description: 'Date To', example: '2025-05-20' }),
+    __metadata("design:type", String)
+], Order.prototype, "DateTo", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ description: 'Name', example: 'Ivan' }),
+    __metadata("design:type", String)
+], Order.prototype, "Name", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ description: 'Surname', example: 'Ivanov' }),
+    __metadata("design:type", String)
+], Order.prototype, "Surname", void 0);
 //# sourceMappingURL=orders.js.map

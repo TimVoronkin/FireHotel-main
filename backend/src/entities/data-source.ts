@@ -20,7 +20,7 @@ export const AppDataSource = new DataSource({
   synchronize: false,
   logging: true,
   entities: [Cells, Users, Orders, Locker],
-  migrations: [__dirname + './src/migrations/*.{ts,js}'],
+  migrations: [__dirname + '/entities/*.ts'],
 });
 
 AppDataSource.initialize()

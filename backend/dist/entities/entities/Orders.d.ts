@@ -6,6 +6,10 @@ export declare class Orders {
     email: string;
     cell_id: number;
     locker_id: number;
+    DateFrom: Date;
+    DateTo: Date;
+    Name: string;
+    Surname: string;
     cells: Cells[];
     cell: Cells;
     locker: Locker;
