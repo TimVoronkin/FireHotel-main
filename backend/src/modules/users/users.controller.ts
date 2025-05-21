@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards, ParseIntPipe } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Users } from 'src/entities/entities/Users';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
@@ -47,7 +47,7 @@ export class UsersController {
   // @UseGuards(JwtAuthGuard)
   @ApiCookieAuth()
   @ApiResponse({ status: 200 })
-  deleteUser(@Param('id') id: number) {
+  deleteUser(@Param('id', ParseIntPipe) id: number) {
     return this.usersService.deleteUser({ id });
   }
 }

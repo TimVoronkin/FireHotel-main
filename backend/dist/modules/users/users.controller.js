@@ -81,7 +81,7 @@ __decorate([
     (0, common_1.Delete)('/:id'),
     (0, swagger_1.ApiCookieAuth)(),
     (0, swagger_1.ApiResponse)({ status: 200 }),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)

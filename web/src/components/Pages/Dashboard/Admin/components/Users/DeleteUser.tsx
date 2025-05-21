@@ -32,7 +32,7 @@ function DeleteUser({ user }: { user?: import('@/types/users').User }) {
       setErrors(['User not found']);
       return;
     }
-    const res = await deleteUser({ id: userToDelete.id });
+    const res = await deleteUser({ id: Number(userToDelete.id) });
     if (res?.error) {
       toast.error(res.message);
     } else {

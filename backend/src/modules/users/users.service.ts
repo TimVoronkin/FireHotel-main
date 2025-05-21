@@ -68,7 +68,7 @@ export class UsersService {
         message: `User with id ${deleteUserDto.id} does not exist`,
       };
     }
-    this.usersRepository.delete({ id: deleteUserDto.id });
+    await this.usersRepository.delete({ id: deleteUserDto.id });
     return {
       message: `User with id ${deleteUserDto.id} deleted successfully`,
     };

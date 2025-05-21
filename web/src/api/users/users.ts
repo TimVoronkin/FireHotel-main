@@ -38,7 +38,7 @@ export const updateUser = async (user: Partial<User>) => {
 
 export const deleteUser = async (user: Pick<User, 'id'>) => {
   const response = await axios
-    .delete(`http://localhost:3000/api/users/${user.id}`, {
+    .delete(`http://localhost:3000/api/users/${Number(user.id)}`, {
       withCredentials: true,
     })
     .then((res) => {
