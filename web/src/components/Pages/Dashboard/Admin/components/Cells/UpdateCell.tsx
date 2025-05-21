@@ -141,7 +141,7 @@ function UpdateCell({ cell }: { cell?: Cell }) {
                 <RadioGroup.Item value="reserved">Reserved</RadioGroup.Item>
               </RadioGroup.Root>
             </div>
-            <div>
+            {/* <div>
               <label>Reserved Until</label>
               <TextField.Root
                 placeholder="Reserved Until"
@@ -149,7 +149,7 @@ function UpdateCell({ cell }: { cell?: Cell }) {
                 type="date"
                 onChange={(e) => setReservedUntil(e.target.value ? new Date(e.target.value) : null)}
               />
-            </div>
+            </div> */}
             {/* <div>
               <label>Order ID</label>
               <TextField.Root

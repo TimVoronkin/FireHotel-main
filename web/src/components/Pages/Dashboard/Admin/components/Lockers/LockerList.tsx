@@ -11,6 +11,7 @@ import UpdateCell from '../Cells/UpdateCell';
 import DeleteCell from '../Cells/DeleteCell';
 import { Button } from '@radix-ui/themes';
 import { useEffect } from 'react';
+import CreateOrder from '../Orders/CreateOrder';
 
 function LockerList({ lockers, cells, isLoading }: { lockers: Locker[]; cells: Cell[]; isLoading: boolean }) {
   const [selectedLockerId, setSelectedLockerId] = useState<number | null>(null);
@@ -104,9 +105,9 @@ function LockerList({ lockers, cells, isLoading }: { lockers: Locker[]; cells: C
                     {/* <Table.ColumnHeaderCell>Locker ID</Table.ColumnHeaderCell> */}
                     <Table.ColumnHeaderCell>Order ID</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Size</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Reserved Until</Table.ColumnHeaderCell>
+                    {/* <Table.ColumnHeaderCell>Reserved Until</Table.ColumnHeaderCell> */}
                     <Table.ColumnHeaderCell>Status</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Worker ID</Table.ColumnHeaderCell>
+                    {/* <Table.ColumnHeaderCell>Worker ID</Table.ColumnHeaderCell> */}
                     <Table.ColumnHeaderCell>Actions</Table.ColumnHeaderCell>
                   </Table.Row>
                 </Table.Header>
@@ -120,7 +121,7 @@ function LockerList({ lockers, cells, isLoading }: { lockers: Locker[]; cells: C
                         {/* <Table.Cell>{cell.locker_id}</Table.Cell> */}
                         <Table.Cell>{cell.order_id || '-'}</Table.Cell>
                         <Table.Cell>{cell.size}</Table.Cell>
-                        <Table.Cell>
+                        {/* <Table.Cell>
                           {cell.reserved_until === null
                             ? '-'
                             : new Date(cell.reserved_until).toLocaleDateString('en-US', {
@@ -128,13 +129,14 @@ function LockerList({ lockers, cells, isLoading }: { lockers: Locker[]; cells: C
                                 month: '2-digit',
                                 year: 'numeric',
                               })}
-                        </Table.Cell>
+                        </Table.Cell> */}
                         <Table.Cell>{cell.status}</Table.Cell>
-                        <Table.Cell>{cell.worker_id || '-'}</Table.Cell>
+                        {/* <Table.Cell>{cell.worker_id || '-'}</Table.Cell> */}
                         <Table.Cell>
                           <div className="flex flex-row gap-5">
                             <UpdateCell cell={cell} />
                             <DeleteCell cell={cell} />
+                            <CreateOrder defaultLockerId={selectedLockerId} defaultCellId={cell.id} />
                           </div>
                         </Table.Cell>
                       </Table.Row>

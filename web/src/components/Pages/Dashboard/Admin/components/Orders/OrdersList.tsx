@@ -1,11 +1,40 @@
 import { Order } from '@/types/orders';
 import { Table } from '@radix-ui/themes';
+import { useEffect, useState } from 'react';
+
+import { getCells } from '@/api/cells/cells';
+import { getLockers } from '@/api/lockers/lockers';
 
 import CreateOrder from './CreateOrder';
-import UpdateOrder from './UpdateOrder';
 import DeleteOrder from './DeleteOrder';
+import UpdateOrder from './UpdateOrder';
 
 function OrdersList({ orders, isLoading }: { orders: Order[]; isLoading: boolean }) {
+  const [lockerOptions, setLockerOptions] = useState<any[]>([]);
+  const [cellOptions, setCellOptions] = useState<any[]>([]);
+
+  useEffect(() => {
+    async function fetchLockers() {
+      const res = await getLockers();
+      if (res && Array.isArray(res)) {
+        const sorted = res.slice().sort((a, b) => a.id - b.id);
+        setLockerOptions(sorted);
+      }
+    }
+    fetchLockers();
+  }, []);
+
+  useEffect(() => {
+    async function fetchCells() {
+      const res = await getCells();
+      if (res && Array.isArray(res)) {
+        const sorted = res.slice().sort((a, b) => (a.cellNumber ?? a.id) - (b.cellNumber ?? b.id));
+        setCellOptions(sorted);
+      }
+    }
+    fetchCells();
+  }, []);
+
   return (
     <div className="flex flex-col gap-10">
       <span>
@@ -45,7 +74,7 @@ function OrdersList({ orders, isLoading }: { orders: Order[]; isLoading: boolean
                 <Table.Cell>{order.Surname}</Table.Cell>
                 <Table.Cell>
                   <div className="flex flex-row gap-5">
-                    <UpdateOrder order={order} />
+                    <UpdateOrder order={order} lockerOptions={lockerOptions} cellOptions={cellOptions} />
                     <DeleteOrder order={order} />
                   </div>
                 </Table.Cell>

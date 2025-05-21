@@ -33,6 +33,7 @@ let OrdersService = class OrdersService {
         return this.ordersRepository.findOne({ where: { orderUuid: orderUuid } });
     }
     async create(createOrderDto) {
+        console.log('DTO FROM CLIENT:', createOrderDto);
         const generator = new trackNumberGenerator_1.TrackNumberGenerator();
         const lockerIsExist = await this.lockersRepository.findOne({ where: { id: createOrderDto.locker_id } });
         const cellIsExistAndFree = await this.cellsRepository.findOne({
@@ -41,11 +42,27 @@ let OrdersService = class OrdersService {
         const reservedUntil = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000);
         const orderUuid = generator.generate();
         if (lockerIsExist && cellIsExistAndFree) {
+            console.log('ORDER TO SAVE:', {
+                orderUuid: orderUuid,
+                cell: cellIsExistAndFree,
+                locker: lockerIsExist,
+                email: createOrderDto.email,
+                DateFrom: createOrderDto.DateFrom,
+                DateTo: createOrderDto.DateTo,
+                Name: createOrderDto.Name,
+                Surname: createOrderDto.Surname,
+                worker_id: createOrderDto.worker_id,
+            });
             const order = await this.ordersRepository.save({
                 orderUuid: orderUuid,
                 cell: cellIsExistAndFree,
                 locker: lockerIsExist,
                 email: createOrderDto.email,
+                DateFrom: createOrderDto.DateFrom,
+                DateTo: createOrderDto.DateTo,
+                Name: createOrderDto.Name,
+                Surname: createOrderDto.Surname,
+                worker_id: createOrderDto.worker_id,
             });
             const complectedOrder = {
                 id: order.id,

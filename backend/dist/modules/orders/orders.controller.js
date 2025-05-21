@@ -26,6 +26,7 @@ let OrdersController = class OrdersController {
         return this.ordersService.findAll();
     }
     create(order) {
+        console.log('ORDER BODY IN CONTROLLER:', order);
         return this.ordersService.create(order);
     }
     update(order) {

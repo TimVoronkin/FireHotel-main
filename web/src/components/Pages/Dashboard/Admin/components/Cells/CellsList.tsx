@@ -25,11 +25,12 @@ function CellsList({ cells, isLoading }: { cells: Cell[]; isLoading: boolean }) 
             <Table.ColumnHeaderCell>Branch-Room ID</Table.ColumnHeaderCell>
             {/* <Table.ColumnHeaderCell>ID</Table.ColumnHeaderCell> */}
             <Table.ColumnHeaderCell>Room №</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell>Order ID</Table.ColumnHeaderCell>
+            {/* <Table.ColumnHeaderCell>Order ID</Table.ColumnHeaderCell> */}
             <Table.ColumnHeaderCell>Size</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell>Reserved Until</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell>Status</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell>Worker ID</Table.ColumnHeaderCell>
+            {/* <Table.ColumnHeaderCell>Reserved dates</Table.ColumnHeaderCell> */}
+
+            {/* <Table.ColumnHeaderCell>Worker ID</Table.ColumnHeaderCell> */}
             <Table.ColumnHeaderCell>Actions</Table.ColumnHeaderCell>
           </Table.Row>
         </Table.Header>
@@ -42,22 +43,26 @@ function CellsList({ cells, isLoading }: { cells: Cell[]; isLoading: boolean }) 
             sortedCells.map((cell: Cell) => {
               return (
                 <Table.Row key={cell.id}>
-                  <Table.Cell className="text-gray-500">{cell.locker_id} - {cell.id}</Table.Cell>
+                  <Table.Cell className="text-gray-500">
+                    {cell.locker_id} - {cell.id}
+                  </Table.Cell>
                   {/* <Table.RowHeaderCell className="text-gray-500">{cell.id}</Table.RowHeaderCell> */}
                   <Table.RowHeaderCell>{cell.cellNumber}</Table.RowHeaderCell>
-                  <Table.Cell>{cell.order_id || '-'}</Table.Cell>
+                  {/* <Table.Cell>{cell.order_id || '-'}</Table.Cell> */}
                   <Table.Cell>{cell.size}</Table.Cell>
-                  <Table.Cell>
+
+                  <Table.Cell>{cell.status}</Table.Cell>
+                  {/* <Table.Cell>
                     {cell.reserved_until === null
                       ? '-'
                       : new Date(cell.reserved_until).toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' })}
-                  </Table.Cell>
-                  <Table.Cell>{cell.status}</Table.Cell>
-                  <Table.Cell>{cell.worker_id || '-'}</Table.Cell>
+                  </Table.Cell> */}
+                  {/* <Table.Cell>{order.DateFrom}</Table.Cell>
+                  <Table.Cell>{order.DateTo}</Table.Cell> */}
+                  {/* <Table.Cell>{cell.worker_id || '-'}</Table.Cell> */}
                   <Table.Cell>
                     <div className="flex flex-row gap-5">
                       <UpdateCell cell={cell} />
-                      
                       <DeleteCell cell={cell} />
                     </div>
                   </Table.Cell>

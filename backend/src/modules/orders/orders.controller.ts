@@ -17,18 +17,19 @@ export class OrdersController {
   }
 
   @Post()
-    // @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @ApiCookieAuth()
   @ApiResponse({
     status: 201,
     example: { message: 'Order is created', order: { id: 1, orderUuid: 'TFB-000001', locker_id: 1, cell_id: 1 } },
   })
   create(@Body() order: CreateOrderDto) {
+    console.log('ORDER BODY IN CONTROLLER:', order); // <-- log incoming body
     return this.ordersService.create(order);
   }
 
   @Put()
-    // @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @ApiCookieAuth()
   @ApiResponse({
     status: 201,
@@ -38,7 +39,7 @@ export class OrdersController {
     return this.ordersService.update(order);
   }
   @Delete()
-    // @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @ApiCookieAuth()
   @ApiResponse({ status: 201, example: { message: 'Order is deleted' } })
   delete(@Query('tn') order: string) {

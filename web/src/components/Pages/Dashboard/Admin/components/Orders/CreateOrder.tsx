@@ -7,13 +7,13 @@ import { Button, Dialog, TextField, Select } from '@radix-ui/themes';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
-function CreateOrder() {
+function CreateOrder({ defaultLockerId, defaultCellId }: { defaultLockerId?: number | null; defaultCellId?: number | null }) {
   const user_id = useUserStore((state) => {
     return state.id;
   });
   const [email, setEmail] = useState<string>('');
-  const [cellId, setCellId] = useState<string>('');
-  const [lockerId, setLockerId] = useState<string>('');
+  const [cellId, setCellId] = useState<string>(defaultCellId ? defaultCellId.toString() : '');
+  const [lockerId, setLockerId] = useState<string>(defaultLockerId ? defaultLockerId.toString() : '');
   const [dateFrom, setDateFrom] = useState<string>('');
   const [dateTo, setDateTo] = useState<string>('');
   const [name, setName] = useState<string>('');
@@ -57,11 +57,12 @@ function CreateOrder() {
       email,
       cell_id: parseInt(cellId),
       locker_id: parseInt(lockerId),
-      DateFrom: dateFrom,
-      DateTo: dateTo,
-      Name: name,
-      Surname: surname,
+      DateFrom: dateFrom || '',
+      DateTo: dateTo || '',
+      Name: name || '',
+      Surname: surname || '',
     };
+    console.log('ORDER PAYLOAD:', order); // <-- log payload
     setEmail('');
     setCellId('');
     setLockerId('');
@@ -77,6 +78,10 @@ function CreateOrder() {
     } else {
       window.location.reload();
       toast.success(res!.message);
+    }
+    if (!dateFrom || !dateTo) {
+      toast.error('Date From and Date To are required');
+      return;
     }
   };
 
@@ -107,35 +112,95 @@ function CreateOrder() {
           <Dialog.Title>Create Order</Dialog.Title>
           <Dialog.Description className="mb-5">Fill in the information to add an order.</Dialog.Description>
           <div className="grid grid-cols-2 gap-4">
-            <Select.Root value={lockerId} onValueChange={setLockerId} required>
-            
-              <Select.Trigger placeholder="Select Locker *" />
-              <Select.Content>
-                {lockerOptions.map((locker) => (
-                  <Select.Item key={locker.id} value={locker.id.toString()}>
-                    {locker.name ? `#${locker.id} - ${locker.location} "${locker.name}"` : locker.id}
-                  </Select.Item>
-                ))}
-              </Select.Content>
-            </Select.Root>
-            <Select.Root value={cellId} onValueChange={setCellId} required>
-              <Select.Trigger placeholder="Select Cell *" />
-              <Select.Content>
-                {cellOptions.map((cell) => (
-                  <Select.Item key={cell.id} value={cell.id.toString()}>
-                    {cell.cellNumber ? `№ ${cell.cellNumber}` : cell.id}
-                  </Select.Item>
-                ))}
-              </Select.Content>
-            </Select.Root>
-            <TextField.Root required placeholder="Date From *" type="date" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} />
-            <TextField.Root required placeholder="Date To *" type="date" value={dateTo} onChange={(e) => setDateTo(e.target.value)} />
+            <div>
+              <label htmlFor="createOrder_lockerId">
+                Branch <span className="text-red-500">*</span>
+              </label>
+              <br />
+              <Select.Root value={lockerId} onValueChange={setLockerId} required>
+                <Select.Trigger id="createOrder_lockerId" placeholder="Select Branch" />
+                <Select.Content>
+                  {lockerOptions.map((locker) => (
+                    <Select.Item key={locker.id} value={locker.id.toString()}>
+                      {locker.name ? `#${locker.id} - ${locker.location} \"${locker.name}\"` : locker.id}
+                    </Select.Item>
+                  ))}
+                </Select.Content>
+              </Select.Root>
+            </div>
+            <div>
+              <label htmlFor="createOrder_cellId">
+                Room <span className="text-red-500">*</span>
+              </label>
+              <br />
+              <Select.Root value={cellId} onValueChange={setCellId} required>
+                <Select.Trigger id="createOrder_cellId" placeholder="Select Room" />
+                <Select.Content>
+                  {cellOptions.map((cell) => (
+                    <Select.Item key={cell.id} value={cell.id.toString()}>
+                      {cell.cellNumber ? `№ ${cell.cellNumber}` : cell.id}
+                    </Select.Item>
+                  ))}
+                </Select.Content>
+              </Select.Root>
+            </div>
 
-            <TextField.Root required placeholder="Name *" value={name} onChange={(e) => setName(e.target.value)} />
-            <TextField.Root required placeholder="Surname *" value={surname} onChange={(e) => setSurname(e.target.value)} />
-
-
-            <TextField.Root required placeholder="Receiver E-mail *" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <div>
+              <label htmlFor="createOrder_dateFrom">
+                Date From <span className="text-red-500">*</span>
+              </label>
+              <TextField.Root
+                id="createOrder_dateFrom"
+                required
+                placeholder="Date From *"
+                type="date"
+                value={dateFrom}
+                onChange={(e) => setDateFrom(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="createOrder_dateTo">
+                Date To <span className="text-red-500">*</span>
+              </label>
+              <TextField.Root
+                id="createOrder_dateTo"
+                required
+                placeholder="Date To *"
+                type="date"
+                value={dateTo}
+                onChange={(e) => setDateTo(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="createOrder_name">
+                Name <span className="text-red-500">*</span>
+              </label>
+              <TextField.Root id="createOrder_name" required placeholder="Name *" value={name} onChange={(e) => setName(e.target.value)} />
+            </div>
+            <div>
+              <label htmlFor="createOrder_surname">
+                Surname <span className="text-red-500">*</span>
+              </label>
+              <TextField.Root
+                id="createOrder_surname"
+                required
+                placeholder="Surname *"
+                value={surname}
+                onChange={(e) => setSurname(e.target.value)}
+              />
+            </div>
+            <div className="col-span-2">
+              <label htmlFor="createOrder_email">
+                Receiver E-mail <span className="text-red-500">*</span>
+              </label>
+              <TextField.Root
+                id="createOrder_email"
+                required
+                placeholder="Receiver E-mail *"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
           </div>
           {!isValid && (
             <div className="text-red-500">

@@ -1,10 +1,10 @@
 import { updateOrder } from '@/api/orders/orders';
 import { Toaster } from '@/components/ui/sonner';
-import { Button, Dialog, TextField } from '@radix-ui/themes';
+import { Button, Dialog, Select, TextField } from '@radix-ui/themes';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
-function UpdateOrder({ order }: { order?: import('@/types/orders').Order }) {
+function UpdateOrder({ order, lockerOptions, cellOptions }: { order?: import('@/types/orders').Order, lockerOptions: any[], cellOptions: any[] }) {
   const [tracknumber, setTracknumber] = useState<string>('TFB-');
   const [cellId, setCellId] = useState<number>(0);
   const [email, setEmail] = useState<string>('');
@@ -85,24 +85,99 @@ function UpdateOrder({ order }: { order?: import('@/types/orders').Order }) {
           <Dialog.Title>Update Order</Dialog.Title>
           <Dialog.Description>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, facilis.</Dialog.Description>
           <div className="grid grid-cols-2 gap-4">
-            <TextField.Root
-              required={true}
-              placeholder="Track Number *"
-              value={tracknumber}
-              onChange={(e) => setTracknumber(e.target.value)}
-            />
-            <TextField.Root required={false} placeholder="Cell ID" value={cellId} onChange={(e) => setCellId(parseInt(e.target.value))} />
-            <TextField.Root required={false} placeholder="Email" value={email} type="email" onChange={(e) => setEmail(e.target.value)} />
-            <TextField.Root
-              required={false}
-              placeholder="Locker ID"
-              value={lockerId}
-              onChange={(e) => setLockerId(parseInt(e.target.value))}
-            />
-            <TextField.Root required placeholder="Date From *" type="date" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} />
-            <TextField.Root required placeholder="Date To *" type="date" value={dateTo} onChange={(e) => setDateTo(e.target.value)} />
-            <TextField.Root required placeholder="Name *" value={name} onChange={(e) => setName(e.target.value)} />
-            <TextField.Root required placeholder="Surname *" value={surname} onChange={(e) => setSurname(e.target.value)} />
+            <div>
+              <label htmlFor="updateOrder_lockerId">
+                Branch <span className="text-red-500">*</span>
+              </label><br />
+              <Select.Root value={lockerId ? lockerId.toString() : ''} onValueChange={v => setLockerId(Number(v))} required>
+                <Select.Trigger id="updateOrder_lockerId" placeholder="Select Branch" />
+                <Select.Content>
+                  {lockerOptions && lockerOptions.map((locker) => (
+                    <Select.Item key={locker.id} value={locker.id.toString()}>
+                      {locker.name ? `#${locker.id} - ${locker.location} \"${locker.name}\"` : locker.id}
+                    </Select.Item>
+                  ))}
+                </Select.Content>
+              </Select.Root>
+            </div>
+            <div>
+              <label htmlFor="updateOrder_cellId">
+                Room <span className="text-red-500">*</span>
+              </label><br />
+              <Select.Root value={cellId ? cellId.toString() : ''} onValueChange={v => setCellId(Number(v))} required>
+                <Select.Trigger id="updateOrder_cellId" placeholder="Select Room" />
+                <Select.Content>
+                  {cellOptions && cellOptions.map((cell) => (
+                    <Select.Item key={cell.id} value={cell.id.toString()}>
+                      {cell.cellNumber ? `№ ${cell.cellNumber} - ${cell.size}` : cell.id}
+                    </Select.Item>
+                  ))}
+                </Select.Content>
+              </Select.Root>
+            </div>
+            <div>
+              <label htmlFor="updateOrder_dateFrom">
+                Date From <span className="text-red-500">*</span>
+              </label>
+              <TextField.Root
+                id="updateOrder_dateFrom"
+                required
+                placeholder="Date From *"
+                type="date"
+                value={dateFrom}
+                onChange={(e) => setDateFrom(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="updateOrder_dateTo">
+                Date To <span className="text-red-500">*</span>
+              </label>
+              <TextField.Root
+                id="updateOrder_dateTo"
+                required
+                placeholder="Date To *"
+                type="date"
+                value={dateTo}
+                onChange={(e) => setDateTo(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="updateOrder_name">
+                Name <span className="text-red-500">*</span>
+              </label>
+              <TextField.Root
+                id="updateOrder_name"
+                required
+                placeholder="Name *"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="updateOrder_surname">
+                Surname <span className="text-red-500">*</span>
+              </label>
+              <TextField.Root
+                id="updateOrder_surname"
+                required
+                placeholder="Surname *"
+                value={surname}
+                onChange={(e) => setSurname(e.target.value)}
+              />
+            </div>
+            <div className="col-span-2">
+              <label htmlFor="updateOrder_email">
+                Receiver E-mail <span className="text-red-500">*</span>
+              </label>
+              <TextField.Root
+                id="updateOrder_email"
+                required
+                placeholder="Receiver E-mail *"
+                value={email}
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
           </div>
           {!isValid && (
             <div className="text-red-500">
