@@ -6,7 +6,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext
 const testimonials = [
 	{
 		name: 'Jana Nováková',
-		text: 'fireHotel is the best place to relax! Spacious rooms, excellent service, and a stunning city view.',
+		text: 'FireHotel is the best place to relax! Spacious rooms, excellent service, and a stunning city view.',
 		image: '/person-1.jpg',
 	},
 	{
@@ -16,17 +16,17 @@ const testimonials = [
 	},
 	{
 		name: 'Lucie Svobodová',
-		text: 'Breakfasts are amazing, and the location is perfect — right in the city center. Thank you, fireHotel!',
+		text: 'Breakfasts are amazing, and the location is perfect — right in the city center. Thank you, FireHotel!',
 		image: '/person-3.jpg',
 	},
   {
     name: 'Tomáš Horák',
-    text: 'I had a great business trip at fireHotel. The conference room was well-equipped, and the staff was very professional.',
+    text: 'I had a great business trip at FireHotel. The conference room was well-equipped, and the staff was very professional.',
     image: '/person-4.jpg',
   },
   {
     name: 'Eva Černá',
-    text: 'fireHotel is my favorite place to stay when I visit the city. The atmosphere is cozy, and the service is top-notch.',
+    text: 'FireHotel is my favorite place to stay when I visit the city. The atmosphere is cozy, and the service is top-notch.',
     image: '/person-5.jpg',
   },
 ];
@@ -55,7 +55,7 @@ function Home() {
             Enjoy breathtaking city views, world-class service, and a variety of amenities designed to make your stay truly special.
           </p>
           <p className="text-xl text-gray-300 mb-6">
-            Discover our signature restaurant, relax in the spa, or take a dip in our panoramic pool. Whether you are here for work or pleasure, fireHotel is your home away from home.
+            Discover our signature restaurant, relax in the spa, or take a dip in our panoramic pool. Whether you are here for work or pleasure, FireHotel is your home away from home.
           </p>
           <Button
             style={{ cursor: 'pointer' }}
@@ -71,7 +71,7 @@ function Home() {
       {/* Features & Gallery */}
       <section className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-10 items-start mb-16">
         <div className="flex flex-col gap-6 bg-gray-900/60 backdrop-blur-md rounded-xl border border-gray-800 shadow-lg p-8" style={{backgroundColor: 'rgba(24,24,27,0.60)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(16px)'}}>
-          <h3 className="text-3xl font-bold text-orange-400 mb-2">Why Choose fireHotel?</h3>
+          <h3 className="text-3xl font-bold text-orange-400 mb-2">Why Choose FireHotel?</h3>
           <ul className="list-disc ml-6 mt-2 text-lg text-gray-200">
             <li>Spacious and cozy rooms with modern design</li>
             <li>Free Wi-Fi and 24/7 guest support</li>

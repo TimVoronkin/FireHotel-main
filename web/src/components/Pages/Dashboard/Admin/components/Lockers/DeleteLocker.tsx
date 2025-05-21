@@ -42,9 +42,10 @@ function DeleteLocker({ locker }: { locker?: import('@/types/lockers').Locker })
           </Button>
         </Dialog.Trigger>
         <Dialog.Content>
-          <Dialog.Title>Delete Locker</Dialog.Title>
-          <Dialog.Description>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, facilis.</Dialog.Description>
-          <div className="grid grid-cols-2 gap-4">
+          <Dialog.Title>Delete branch</Dialog.Title>
+          <Dialog.Description>Are you sure you want to delete this branch?</Dialog.Description>
+          <div className="text-sm text-gray-500 mt-2">Please enter the ID of the locker you want to delete:</div>
+          <div className="grid grid-cols-2 gap-4 mt-2">
             <TextField.Root required={true} placeholder="Locker ID *" value={id} onChange={(e) => setId(Number(e.target.value))} />
           </div>
           {!isValid && (
