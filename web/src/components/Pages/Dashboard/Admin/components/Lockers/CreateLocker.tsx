@@ -103,7 +103,7 @@ function CreateLocker() {
               ))}
             </div>
           )}
-          <div className="flex flex-row justify-end gap-5">
+          <div className="flex flex-row justify-end gap-5 mt-5">
             <Dialog.Close>
               <Button>Close</Button>
             </Dialog.Close>

@@ -3,6 +3,9 @@ import { AppModule } from './app.module';
 import * as cookieParser from 'cookie-parser';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
+import * as express from 'express';
+import { join } from 'path';
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
@@ -25,6 +28,18 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
+
+  // Получаем express-приложение
+  const expressApp = app.getHttpAdapter().getInstance();
+  // Serve static files from web/dist
+  expressApp.use(express.static(join(__dirname, '..', '..', 'web', 'dist')));
+  // SPA fallback: отдавать index.html для всех не-API путей
+  expressApp.get('*', (req, res) => {
+    if (req.originalUrl.startsWith('/api') || req.originalUrl.startsWith('/docs')) {
+      return res.status(404).send('Not found');
+    }
+    res.sendFile(join(__dirname, '..', '..', 'web', 'dist', 'index.html'));
+  });
 
   await app.listen(process.env.PORT ?? 3000);
 }

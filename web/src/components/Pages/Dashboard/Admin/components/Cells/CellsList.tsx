@@ -19,12 +19,14 @@ function CellsList({ cells, isLoading, hideActions = false }: { cells: Cell[]; i
       <span>
         <h1 className="text-xl font-bold text-red-500">Rooms Management</h1>
       </span>
-      <Table.Root                 className="flex flex-col gap-10 w-full rounded-xl border border-gray-800 shadow-lg"
-                style={{
-                  backgroundColor: 'rgba(24,24,27,0.60)',
-                  backdropFilter: 'blur(10px)',
-                  WebkitBackdropFilter: 'blur(16px)',
-                }}>
+      <Table.Root
+        className="flex flex-col gap-10 w-full rounded-xl border border-gray-800 shadow-lg"
+        style={{
+          backgroundColor: 'rgba(24,24,27,0.60)',
+          backdropFilter: 'blur(10px)',
+          WebkitBackdropFilter: 'blur(16px)',
+        }}
+      >
         <Table.Header>
           <Table.Row>
             <Table.ColumnHeaderCell>Branch-Room ID</Table.ColumnHeaderCell>

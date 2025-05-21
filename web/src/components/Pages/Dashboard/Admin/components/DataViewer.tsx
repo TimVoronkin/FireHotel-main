@@ -22,26 +22,28 @@ function DataViewer({
   orders: UseQueryResult<Order[]>;
   lockers: UseQueryResult<Locker[]>;
   cells: UseQueryResult<Cell[]>;
-})
-
-{
+}) {
   return (
     <div className="relative w-full">
       <Flex className="relative z-10">
         {pathname.includes('/data-viewer/statistics') && (
           <Statistics
             users={users.data!}
-            orders={orders.data!}
             lockers={lockers.data!}
+            orders={orders.data!}
             isLoading={users.isLoading || orders.isLoading || lockers.isLoading}
           />
         )}
-        {pathname.includes('/data-viewer/users') && <UsersList users={users.data!} isLoading={users.isLoading} />}
-        {pathname.includes('/data-viewer/orders') && <OrdersList orders={orders.data!} isLoading={orders.isLoading} />}
-        {pathname.includes('/data-viewer/cells') && <CellsList cells={cells.data!} isLoading={cells.isLoading} />}
+        {pathname.includes('/data-viewer/users') && (
+          <UsersList users={Array.isArray(users.data) ? users.data : []} isLoading={users.isLoading} />
+        )}
         {pathname.includes('/data-viewer/lockers') && (
           <LockerList lockers={lockers.data!} cells={cells.data!} isLoading={lockers.isLoading} />
         )}
+        {pathname.includes('/data-viewer/cells') && (
+          <CellsList cells={Array.isArray(cells.data) ? cells.data : []} isLoading={cells.isLoading} />
+        )}
+        {pathname.includes('/data-viewer/orders') && <OrdersList orders={orders.data!} isLoading={orders.isLoading} />}
       </Flex>
     </div>
   );

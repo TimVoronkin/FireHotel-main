@@ -31,7 +31,7 @@ function CreateCell({ lockerId }: { lockerId?: number }) {
     if (res?.error) {
       toast.error(res.message);
     } else {
-      // window.location.reload();
+      window.location.reload();
       toast.success(res!.message);
     }
   };
