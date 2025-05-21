@@ -24,7 +24,7 @@ function DataViewer({
   cells: UseQueryResult<Cell[]>;
 }) {
   return (
-    <Flex className="p-5 w-fit h-fit">
+    <Flex className="">
       {pathname.includes('/data-viewer/statistics') && (
         <Statistics
           users={users.data!}
@@ -33,10 +33,12 @@ function DataViewer({
           isLoading={users.isLoading || orders.isLoading || lockers.isLoading}
         />
       )}
-      {pathname.includes('/data-viewer/users') && <UsersList users={users.data!} isLoading={users.isLoading}/>}
+      {pathname.includes('/data-viewer/users') && <UsersList users={users.data!} isLoading={users.isLoading} />}
       {pathname.includes('/data-viewer/orders') && <OrdersList orders={orders.data!} isLoading={orders.isLoading} />}
       {pathname.includes('/data-viewer/cells') && <CellsList cells={cells.data!} isLoading={cells.isLoading} />}
-      {pathname.includes('/data-viewer/lockers') && <LockerList lockers={lockers.data!} cells={cells.data!} isLoading={lockers.isLoading} />}
+      {pathname.includes('/data-viewer/lockers') && (
+        <LockerList lockers={lockers.data!} cells={cells.data!} isLoading={lockers.isLoading} />
+      )}
     </Flex>
   );
 }

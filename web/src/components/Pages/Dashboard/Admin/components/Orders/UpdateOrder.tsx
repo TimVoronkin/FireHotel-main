@@ -4,7 +4,7 @@ import { Button, Dialog, Select, TextField } from '@radix-ui/themes';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
-function UpdateOrder({ order, lockerOptions, cellOptions }: { order?: import('@/types/orders').Order, lockerOptions: any[], cellOptions: any[] }) {
+function UpdateOrder({ order, lockerOptions = [], cellOptions = [] }: { order?: import('@/types/orders').Order, lockerOptions?: any[], cellOptions?: any[] }) {
   const [tracknumber, setTracknumber] = useState<string>('TFB-');
   const [cellId, setCellId] = useState<number>(0);
   const [email, setEmail] = useState<string>('');

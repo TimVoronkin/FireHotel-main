@@ -46,8 +46,7 @@ function AdminNavigation() {
   });
   return (
     <TabNav.Root>
-      {/* Statistics nav bar */}
-      <Flex className="flex-row gap-10">
+      <Flex className="flex-row gap-10 w-full">
         <Flex className="flex-col items-center gap-5">
           {/* <span className="flex items-center gap-2" onClick={() => setDataViewerIsOpen(!dataViewerIsOpen)}>
             <h1 className="text-xl font-bold text-red-500">Data Viewer</h1>
@@ -97,10 +96,12 @@ function AdminNavigation() {
             )}
           </Flex> */}
         </Flex>
-        {pathname.includes('/data-viewer') && (
-          <DataViewer pathname={pathname} users={users} orders={orders} lockers={lockers} cells={cells} />
-        )}
-        {pathname.includes('/manage') && <Administration pathname={pathname} />}
+        <div className="ml-10">
+          {pathname.includes('/data-viewer') && (
+            <DataViewer pathname={pathname} users={users} orders={orders} lockers={lockers} cells={cells} />
+          )}
+          {pathname.includes('/manage') && <Administration pathname={pathname} />}
+        </div>
       </Flex>
     </TabNav.Root>
   );

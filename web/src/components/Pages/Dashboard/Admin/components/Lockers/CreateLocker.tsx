@@ -86,11 +86,13 @@ function CreateLocker() {
             </div>
             <div className="w-full flex flex-col gap-2">
               <label htmlFor="createLocker_description">Description</label>
-              <TextField.Root
+              <textarea
                 id="createLocker_description"
                 placeholder="Branch Description (optional)"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+                className="break-words whitespace-pre-wrap w-full rounded border border-gray-300 bg-inherit text-inherit p-2 resize-y min-h-[40px] max-h-40 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                rows={2}
               />
             </div>
           </div>
