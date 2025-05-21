@@ -102,7 +102,7 @@ function LockerList({
         )}
       </div>
       <div className="flex flex-row gap-10 w-full justify-center mt-10">
-        <div className="flex-[6] flex flex-col items-center min-w-0">
+        <div className="flex-[5] flex flex-col items-center min-w-0">
           {selectedLockerId !== null && (
             <div className="flex flex-col gap-10 w-full">
               <span>
@@ -116,7 +116,7 @@ function LockerList({
                   <Table.Row>
                     <Table.ColumnHeaderCell>ID</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Room №</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Order ID</Table.ColumnHeaderCell>
+                    {/* <Table.ColumnHeaderCell>Order ID</Table.ColumnHeaderCell> */}
                     <Table.ColumnHeaderCell>Size</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Status</Table.ColumnHeaderCell>
                     {<Table.ColumnHeaderCell>Actions</Table.ColumnHeaderCell>}
@@ -129,7 +129,7 @@ function LockerList({
                       <Table.Row key={cell.id}>
                         <Table.RowHeaderCell className="text-gray-500">{cell.id}</Table.RowHeaderCell>
                         <Table.RowHeaderCell>{cell.cellNumber}</Table.RowHeaderCell>
-                        <Table.Cell>{cell.order_id || '-'}</Table.Cell>
+                        {/* <Table.Cell>{cell.order_id || '-'}</Table.Cell> */}
                         <Table.Cell>{cell.size}</Table.Cell>
                         <Table.Cell>{cell.status}</Table.Cell>
                         <Table.Cell>
@@ -150,7 +150,7 @@ function LockerList({
               </Table.Root>
               {!hideActions && (
                 <div className="flex flex-row gap-5 mt-5">
-                  <CreateCell />
+                  <CreateCell lockerId={selectedLockerId} />
                   {/* <UpdateCell />
                   <DeleteCell /> */}
                 </div>

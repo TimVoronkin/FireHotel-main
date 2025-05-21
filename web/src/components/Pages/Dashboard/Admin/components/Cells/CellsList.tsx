@@ -58,16 +58,15 @@ function CellsList({ cells, isLoading, hideActions = false }: { cells: Cell[]; i
           ) : null}
         </Table.Body>
       </Table.Root>
-      <span className="flex flex-col gap-5">
-        <p>
-          Total room in all branches: <b>{isLoading ? 'Loading...' : cells?.length || 0}</b>
-        </p>
-      </span>
+
       {!hideActions && (
-        <div className="flex flex-row gap-5 mt-5">
+        <div className="flex flex-row gap-5 mt-5 items-center">
           <CreateCell />
-          <UpdateCell />
-          <DeleteCell />
+          {/* <UpdateCell />
+          <DeleteCell /> */}
+          <p>
+            Total room in all branches: <b>{isLoading ? 'Loading...' : cells?.length || 0}</b>
+          </p>
         </div>
       )}
     </div>

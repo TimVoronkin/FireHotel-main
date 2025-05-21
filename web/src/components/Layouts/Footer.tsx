@@ -31,7 +31,7 @@ function Footer() {
         </div>
       </div>
       <div className="text-center text-gray-400 text-sm mt-5">
-        &copy; {year} FireHotel by Tim Voronkin <br></br>All rights reserved
+        &copy; {year} FireHotel by Tim Voronkin <br></br>No rights reserved
       </div>
     </footer>
   );

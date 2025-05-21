@@ -17,21 +17,11 @@ function UsersList({ users, isLoading, hideActions = false }: { users: User[]; i
       <span>
         <h1 className="text-xl font-bold text-red-500">Users Management</h1>
       </span>
-      <span className="flex flex-col gap-1">
-        <p>
-          Total users: <b>{isLoading ? 'Loading...' : users?.length || 0}</b>
-        </p>
-        <p>
-          Admin users: <b>{isLoading ? 'Loading...' : users?.filter((user) => user.role === 'admin').length || 0}</b>
-        </p>
-        <p>
-          Worker users: <b>{isLoading ? 'Loading...' : users?.filter((user) => user.role === 'worker').length || 0}</b>
-        </p>
-      </span>
+
       <Table.Root>
         <Table.Header>
           <Table.Row>
-            <Table.ColumnHeaderCell >Id</Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell>Id</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell>Username</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell>Name & Surname</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell>Email</Table.ColumnHeaderCell>
@@ -50,7 +40,9 @@ function UsersList({ users, isLoading, hideActions = false }: { users: User[]; i
               <Table.Row key={user.id}>
                 <Table.RowHeaderCell className="text-gray-500">{user.id}</Table.RowHeaderCell>
                 <Table.Cell>{user.username}</Table.Cell>
-                <Table.Cell>{user.name} {user.last_name}</Table.Cell>
+                <Table.Cell>
+                  {user.name} {user.last_name}
+                </Table.Cell>
                 <Table.Cell>📧 {user.email}</Table.Cell>
                 <Table.Cell>📞 +{user.phone}</Table.Cell>
                 <Table.Cell className="text-gray-500">
@@ -70,10 +62,21 @@ function UsersList({ users, isLoading, hideActions = false }: { users: User[]; i
         </Table.Body>
       </Table.Root>
       {!hideActions && (
-        <div className="flex flex-row gap-5">
+        <div className="flex flex-row gap-5 items-center">
           <CreateUser />
-          <UpdateUser />
-          <DeleteUser />
+          {/* <UpdateUser />
+          <DeleteUser /> */}
+          <span className="flex flex-col gap-1">
+            <p>
+              Total users: <b>{isLoading ? 'Loading...' : users?.length || 0}</b>
+            </p>
+            <p>
+              Admin users: <b>{isLoading ? 'Loading...' : users?.filter((user) => user.role === 'admin').length || 0}</b>
+            </p>
+            <p>
+              Worker users: <b>{isLoading ? 'Loading...' : users?.filter((user) => user.role === 'worker').length || 0}</b>
+            </p>
+          </span>
         </div>
       )}
     </div>

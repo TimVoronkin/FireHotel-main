@@ -6,9 +6,9 @@ import { Button, Dialog, RadioGroup, TextField, Select } from '@radix-ui/themes'
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
-function CreateCell() {
+function CreateCell({ lockerId }: { lockerId?: number }) {
   const [cellNumber, setCellNumber] = useState<string>('');
-  const [lockerId, setLockerId] = useState<string>('');
+  const [selectedLockerId, setSelectedLockerId] = useState<string>(lockerId ? lockerId.toString() : '');
   const [lockerOptions, setLockerOptions] = useState<{ id: number; name?: string }[]>([]);
   const [size, setSize] = useState<Cell['size']>('studio');
   const [errors, setErrors] = useState<string[]>([]);
@@ -17,13 +17,13 @@ function CreateCell() {
   const handleSubmit = async () => {
     const cell = {
       cellNumber: parseInt(cellNumber),
-      locker_id: parseInt(lockerId),
+      locker_id: parseInt(selectedLockerId),
       size: size,
       status: 'free' as Cell['status'],
     };
 
     setCellNumber('');
-    setLockerId('');
+    setSelectedLockerId(lockerId ? lockerId.toString() : '');
     setSize('studio');
     setErrors([]);
     setIsValid(false);
@@ -40,13 +40,13 @@ function CreateCell() {
     const validateForm = () => {
       const errors = [];
       if (!cellNumber.trim() || isNaN(Number(cellNumber))) errors.push('Valid Room Number is required');
-      if (!lockerId.trim() || isNaN(Number(lockerId))) errors.push('Valid Locker ID is required');
+      if (!selectedLockerId.trim() || isNaN(Number(selectedLockerId))) errors.push('Valid Locker ID is required');
       return errors;
     };
     const validationErrors = validateForm();
     setErrors(validationErrors);
     setIsValid(validationErrors.length === 0);
-  }, [cellNumber, lockerId]);
+  }, [cellNumber, selectedLockerId]);
 
   useEffect(() => {
     async function fetchLockers() {
@@ -59,6 +59,11 @@ function CreateCell() {
     fetchLockers();
   }, []);
 
+  // If lockerId prop changes, update selectedLockerId
+  useEffect(() => {
+    if (lockerId) setSelectedLockerId(lockerId.toString());
+  }, [lockerId]);
+
   return (
     <>
       <Dialog.Root>
@@ -70,8 +75,8 @@ function CreateCell() {
           <Dialog.Description>Fill in the details below to create a new room.</Dialog.Description>
           <div className="grid grid-cols-2 gap-4">
             <Select.Root
-              value={lockerId}
-              onValueChange={setLockerId}
+              value={selectedLockerId}
+              onValueChange={setSelectedLockerId}
               required
             >
               <Select.Trigger placeholder="Select Branch ID *" />

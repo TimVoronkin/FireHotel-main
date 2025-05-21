@@ -158,14 +158,14 @@ function UpdateCell({ cell }: { cell?: Cell }) {
                 onChange={(e) => setOrderId(Number(e.target.value))}
               />
             </div> */}
-            <div>
+            {/* <div>
               <label>Worker ID</label>
               <TextField.Root
                 placeholder="Worker ID"
                 value={workerId !== 0 ? workerId : ''}
                 onChange={(e) => setWorkerId(Number(e.target.value))}
               />
-            </div>
+            </div> */}
           </div>
           {!isValid && (
             <div className="text-red-500 mt-5">

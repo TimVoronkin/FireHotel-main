@@ -41,7 +41,6 @@ function OrdersList({ orders, isLoading }: { orders: Order[]; isLoading: boolean
         <h1 className="text-xl font-bold text-red-500">Orders Management</h1>
       </span>
 
-
       <Table.Root className="w-full">
         <Table.Header>
           <Table.Row>
@@ -65,7 +64,9 @@ function OrdersList({ orders, isLoading }: { orders: Order[]; isLoading: boolean
             orders.map((order) => (
               <Table.Row key={order.id}>
                 <Table.RowHeaderCell className="text-gray-500">{order.id}</Table.RowHeaderCell>
-                <Table.Cell className="text-gray-500">{order.locker_id} - {order.cell_id}</Table.Cell>
+                <Table.Cell className="text-gray-500">
+                  {order.locker_id} - {order.cell_id}
+                </Table.Cell>
                 <Table.Cell>{order.orderUuid}</Table.Cell>
                 <Table.Cell>{order.email}</Table.Cell>
                 <Table.Cell>{order.DateFrom}</Table.Cell>
@@ -83,11 +84,12 @@ function OrdersList({ orders, isLoading }: { orders: Order[]; isLoading: boolean
           ) : null}
         </Table.Body>
       </Table.Root>
-            <span className="flex flex-col gap-5">
-        <p>Total orders: <b>{isLoading ? 'Loading...' : orders?.length || 0}</b></p>
-      </span>
-      <div className="flex flex-row gap-5 mt-5">
+
+      <div className="flex flex-row gap-5 mt-5 items-center">
         <CreateOrder />
+                <p>
+          Total orders: <b>{isLoading ? 'Loading...' : orders?.length || 0}</b>
+        </p>
       </div>
     </div>
   );
