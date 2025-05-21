@@ -7,7 +7,7 @@ function RootLayout() {
   return (
     <div className="tw-bg-primary flex flex-col min-h-screen">
       <Header />
-      <main className="mt-20 flex-1">
+      <main className="flex-1 flex flex-col">
         <Outlet />
       </main>
       <Footer />

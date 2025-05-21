@@ -36,7 +36,7 @@ function Career() {
     },
   ];
   return (
-    <section className="flex flex-col gap-20">
+    <section className="flex flex-col gap-20 mt-20 flex-1">
       <Flex className="flex flex-col justify-center items-center gap-5">
         <h1 className="text-4xl font-bold text-red-500">Join the FireBox Team</h1>
         <p className="text-pretty text-xl w-1/2">

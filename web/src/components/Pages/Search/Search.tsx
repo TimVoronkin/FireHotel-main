@@ -32,7 +32,7 @@ useEffect(() => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center gap-10">
+    <div className="flex flex-col items-center gap-10 mt-20 flex-1">
       {/* Header */}
       <div className="text-center">
         <h1 className="text-4xl font-bold text-red-500">Our Branches</h1>
@@ -71,15 +71,15 @@ useEffect(() => {
               {/* Map */}
               <div className="w-1/2 h-64 rounded-lg overflow-hidden">
                 {apiKey && (
-                  <iframe
+                    <iframe
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
                     loading="lazy"
                     src={`https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodeURIComponent(
-                      locker.location
+                      `${locker.location} ${locker.name}`
                     )}`}
-                  ></iframe>
+                    ></iframe>
                 )}
               </div>
             </div>

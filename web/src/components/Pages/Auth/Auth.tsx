@@ -41,7 +41,7 @@ function Auth() {
   }, [navigate, userStore.isAdmin, userStore.isAuth]);
 
   return (
-    <section className="flex justify-center items-center gap-5">
+    <section className="flex justify-center items-center gap-5 mt-20 flex-1">
       <Card className="min-w-[400px] md:w-[900px] sm:min-w-[500px]" style={{ padding: '5rem' }}>
         <Flex justify={'center'} py={'5'}>
           <Heading className="font-bold text-red-500" as="h1" size={'8'}>

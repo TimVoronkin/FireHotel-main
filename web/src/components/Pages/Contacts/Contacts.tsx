@@ -11,7 +11,7 @@ function Contacts() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center items-center gap-10">
+    <div className="flex flex-col justify-center items-center gap-10 mt-20 flex-1">
       <h1 className="text-4xl font-bold text-red-500 underline">Contact FireHotel Management System</h1>
 
       <section className="flex flex-col md:flex-row gap-10">

@@ -4,7 +4,7 @@ function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-gray-900 px-20 py-10 mt-20">
+    <footer className="w-full bg-gray-900 px-20 py-10 mt-20 flex-shrink-0">
       <div className="border-b border-gray-700 flex items-center justify-between py-4">
         <div className="flex items-center gap-4">
           <img src="/fire-tree-white.svg" alt="FireHotel logo" className="w-8 h-8" />
