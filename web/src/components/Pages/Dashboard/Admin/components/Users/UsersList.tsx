@@ -5,7 +5,7 @@ import CreateUser from './CreateUser';
 import UpdateUser from './UpdateUser';
 import DeleteUser from './DeleteUser';
 
-function UsersList({ users, isLoading }: { users: User[]; isLoading: boolean }) {
+function UsersList({ users, isLoading, hideActions = false }: { users: User[]; isLoading: boolean; hideActions?: boolean }) {
   return (
     <div className="flex flex-col gap-10">
       <span>
@@ -31,7 +31,7 @@ function UsersList({ users, isLoading }: { users: User[]; isLoading: boolean }) 
             <Table.ColumnHeaderCell>Email</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell>Phone</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell>Role</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell>Actions</Table.ColumnHeaderCell>
+            {!hideActions && <Table.ColumnHeaderCell>Actions</Table.ColumnHeaderCell>}
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -48,22 +48,26 @@ function UsersList({ users, isLoading }: { users: User[]; isLoading: boolean }) 
                 <Table.Cell>📧 {user.email}</Table.Cell>
                 <Table.Cell>📞 +{user.phone}</Table.Cell>
                 <Table.Cell className="text-gray-500">{user.role}</Table.Cell>
-                <Table.Cell>
-                  <div className="flex flex-row gap-5">
-                    <UpdateUser user={user} />
-                    <DeleteUser user={user} />
-                  </div>
-                </Table.Cell>
+                {!hideActions && (
+                  <Table.Cell>
+                    <div className="flex flex-row gap-5">
+                      <UpdateUser user={user} />
+                      <DeleteUser user={user} />
+                    </div>
+                  </Table.Cell>
+                )}
               </Table.Row>
             ))
           ) : null}
         </Table.Body>
       </Table.Root>
-      <div className="flex flex-row gap-5">
-        <CreateUser />
-        <UpdateUser />
-        <DeleteUser />
-      </div>
+      {!hideActions && (
+        <div className="flex flex-row gap-5">
+          <CreateUser />
+          <UpdateUser />
+          <DeleteUser />
+        </div>
+      )}
     </div>
   );
 }

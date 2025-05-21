@@ -13,7 +13,7 @@ import { Button } from '@radix-ui/themes';
 import { useEffect } from 'react';
 import CreateOrder from '../Orders/CreateOrder';
 
-function LockerList({ lockers, cells, isLoading }: { lockers: Locker[]; cells: Cell[]; isLoading: boolean }) {
+function LockerList({ lockers, cells, isLoading, hideActions = false }: { lockers: Locker[]; cells: Cell[]; isLoading: boolean; hideActions?: boolean }) {
   const [selectedLockerId, setSelectedLockerId] = useState<number | null>(null);
   const handleShowCells = (lockerId: number) => {
     setSelectedLockerId(selectedLockerId === lockerId ? null : lockerId);
@@ -32,7 +32,6 @@ function LockerList({ lockers, cells, isLoading }: { lockers: Locker[]; cells: C
         <span>
           <h1 className="text-xl font-bold text-red-500">Branches Management</h1>
         </span>
-
         <Table.Root className="w-full">
           <Table.Header>
             <Table.Row>
@@ -41,7 +40,7 @@ function LockerList({ lockers, cells, isLoading }: { lockers: Locker[]; cells: C
               <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Description</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Total rooms</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Actions</Table.ColumnHeaderCell>
+              {!hideActions && <Table.ColumnHeaderCell>Actions</Table.ColumnHeaderCell>}
             </Table.Row>
           </Table.Header>
           <Table.Body>
@@ -70,24 +69,27 @@ function LockerList({ lockers, cells, isLoading }: { lockers: Locker[]; cells: C
                       </Button>
                     </div>
                   </Table.Cell>
-                  <Table.Cell>
-                    <div className="flex flex-row gap-5">
-                      <UpdateLocker locker={locker} />
-                      <DeleteLocker locker={locker} />
-                    </div>
-                  </Table.Cell>
+                  {!hideActions && (
+                    <Table.Cell>
+                      <div className="flex flex-row gap-5">
+                        <UpdateLocker locker={locker} />
+                        <DeleteLocker locker={locker} />
+                      </div>
+                    </Table.Cell>
+                  )}
                 </Table.Row>
               ))
             ) : null}
           </Table.Body>
         </Table.Root>
-
-        <div className="flex flex-row gap-5 mt-5 items-center">
-          <CreateLocker />
+        {!hideActions && (
+          <div className="flex flex-row gap-5 mt-5 items-center">
+            <CreateLocker />
             <p>
               Total branches: <b>{isLoading ? 'Loading...' : lockers?.length || 0}</b>
             </p>
-        </div>
+          </div>
+        )}
       </div>
       <div className="flex flex-row gap-10 w-full justify-center mt-10">
         <div className="flex-[6] flex flex-col items-center min-w-0">
@@ -106,13 +108,10 @@ function LockerList({ lockers, cells, isLoading }: { lockers: Locker[]; cells: C
                   <Table.Row>
                     <Table.ColumnHeaderCell>ID</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Room №</Table.ColumnHeaderCell>
-                    {/* <Table.ColumnHeaderCell>Locker ID</Table.ColumnHeaderCell> */}
                     <Table.ColumnHeaderCell>Order ID</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Size</Table.ColumnHeaderCell>
-                    {/* <Table.ColumnHeaderCell>Reserved Until</Table.ColumnHeaderCell> */}
                     <Table.ColumnHeaderCell>Status</Table.ColumnHeaderCell>
-                    {/* <Table.ColumnHeaderCell>Worker ID</Table.ColumnHeaderCell> */}
-                    <Table.ColumnHeaderCell>Actions</Table.ColumnHeaderCell>
+                    {!hideActions && <Table.ColumnHeaderCell>Actions</Table.ColumnHeaderCell>}
                   </Table.Row>
                 </Table.Header>
                 <Table.Body>
@@ -122,36 +121,29 @@ function LockerList({ lockers, cells, isLoading }: { lockers: Locker[]; cells: C
                       <Table.Row key={cell.id}>
                         <Table.RowHeaderCell className="text-gray-500">{cell.id}</Table.RowHeaderCell>
                         <Table.RowHeaderCell>{cell.cellNumber}</Table.RowHeaderCell>
-                        {/* <Table.Cell>{cell.locker_id}</Table.Cell> */}
                         <Table.Cell>{cell.order_id || '-'}</Table.Cell>
                         <Table.Cell>{cell.size}</Table.Cell>
-                        {/* <Table.Cell>
-                          {cell.reserved_until === null
-                            ? '-'
-                            : new Date(cell.reserved_until).toLocaleDateString('en-US', {
-                                day: '2-digit',
-                                month: '2-digit',
-                                year: 'numeric',
-                              })}
-                        </Table.Cell> */}
                         <Table.Cell>{cell.status}</Table.Cell>
-                        {/* <Table.Cell>{cell.worker_id || '-'}</Table.Cell> */}
-                        <Table.Cell>
-                          <div className="flex flex-row gap-3 items-center justify-center">
-                            <UpdateCell cell={cell} />
-                            <DeleteCell cell={cell} />
-                            <CreateOrder defaultLockerId={selectedLockerId} defaultCellId={cell.id} />
-                          </div>
-                        </Table.Cell>
+                        {!hideActions && (
+                          <Table.Cell>
+                            <div className="flex flex-row gap-3 items-center justify-center">
+                              <UpdateCell cell={cell} />
+                              <DeleteCell cell={cell} />
+                              <CreateOrder defaultLockerId={selectedLockerId} defaultCellId={cell.id} />
+                            </div>
+                          </Table.Cell>
+                        )}
                       </Table.Row>
                     ))}
                 </Table.Body>
               </Table.Root>
-              <div className="flex flex-row gap-5 mt-5">
-                <CreateCell />
-                {/* <UpdateCell />
-                <DeleteCell /> */}
-              </div>
+              {!hideActions && (
+                <div className="flex flex-row gap-5 mt-5">
+                  <CreateCell />
+                  {/* <UpdateCell />
+                  <DeleteCell /> */}
+                </div>
+              )}
             </div>
           )}
         </div>

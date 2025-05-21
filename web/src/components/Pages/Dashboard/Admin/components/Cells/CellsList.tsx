@@ -5,7 +5,7 @@ import CreateCell from './CreateCell';
 import UpdateCell from './UpdateCell';
 import DeleteCell from './DeleteCell';
 
-function CellsList({ cells, isLoading }: { cells: Cell[]; isLoading: boolean }) {
+function CellsList({ cells, isLoading, hideActions = false }: { cells: Cell[]; isLoading: boolean; hideActions?: boolean }) {
   // Сортировка по locker_id, затем по id
   const sortedCells = [...cells].sort((a, b) => {
     if (a.locker_id < b.locker_id) return -1;
@@ -23,15 +23,10 @@ function CellsList({ cells, isLoading }: { cells: Cell[]; isLoading: boolean }) 
         <Table.Header>
           <Table.Row>
             <Table.ColumnHeaderCell>Branch-Room ID</Table.ColumnHeaderCell>
-            {/* <Table.ColumnHeaderCell>ID</Table.ColumnHeaderCell> */}
             <Table.ColumnHeaderCell>Room №</Table.ColumnHeaderCell>
-            {/* <Table.ColumnHeaderCell>Order ID</Table.ColumnHeaderCell> */}
             <Table.ColumnHeaderCell>Size</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell>Status</Table.ColumnHeaderCell>
-            {/* <Table.ColumnHeaderCell>Reserved dates</Table.ColumnHeaderCell> */}
-
-            {/* <Table.ColumnHeaderCell>Worker ID</Table.ColumnHeaderCell> */}
-            <Table.ColumnHeaderCell>Actions</Table.ColumnHeaderCell>
+            {!hideActions && <Table.ColumnHeaderCell>Actions</Table.ColumnHeaderCell>}
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -46,26 +41,17 @@ function CellsList({ cells, isLoading }: { cells: Cell[]; isLoading: boolean }) 
                   <Table.Cell className="text-gray-500">
                     {cell.locker_id} - {cell.id}
                   </Table.Cell>
-                  {/* <Table.RowHeaderCell className="text-gray-500">{cell.id}</Table.RowHeaderCell> */}
                   <Table.RowHeaderCell>{cell.cellNumber}</Table.RowHeaderCell>
-                  {/* <Table.Cell>{cell.order_id || '-'}</Table.Cell> */}
                   <Table.Cell>{cell.size}</Table.Cell>
-
                   <Table.Cell>{cell.status}</Table.Cell>
-                  {/* <Table.Cell>
-                    {cell.reserved_until === null
-                      ? '-'
-                      : new Date(cell.reserved_until).toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: 'numeric' })}
-                  </Table.Cell> */}
-                  {/* <Table.Cell>{order.DateFrom}</Table.Cell>
-                  <Table.Cell>{order.DateTo}</Table.Cell> */}
-                  {/* <Table.Cell>{cell.worker_id || '-'}</Table.Cell> */}
-                  <Table.Cell>
-                    <div className="flex flex-row gap-5">
-                      <UpdateCell cell={cell} />
-                      <DeleteCell cell={cell} />
-                    </div>
-                  </Table.Cell>
+                  {!hideActions && (
+                    <Table.Cell>
+                      <div className="flex flex-row gap-5">
+                        <UpdateCell cell={cell} />
+                        <DeleteCell cell={cell} />
+                      </div>
+                    </Table.Cell>
+                  )}
                 </Table.Row>
               );
             })
@@ -77,11 +63,13 @@ function CellsList({ cells, isLoading }: { cells: Cell[]; isLoading: boolean }) 
           Total room in all branches: <b>{isLoading ? 'Loading...' : cells?.length || 0}</b>
         </p>
       </span>
-      <div className="flex flex-row gap-5 mt-5">
-        <CreateCell />
-        <UpdateCell />
-        <DeleteCell />
-      </div>
+      {!hideActions && (
+        <div className="flex flex-row gap-5 mt-5">
+          <CreateCell />
+          <UpdateCell />
+          <DeleteCell />
+        </div>
+      )}
     </div>
   );
 }
