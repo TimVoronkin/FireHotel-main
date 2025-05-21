@@ -41,7 +41,14 @@ function OrdersList({ orders, isLoading }: { orders: Order[]; isLoading: boolean
         <h1 className="text-xl font-bold text-red-500">Orders Management</h1>
       </span>
 
-      <Table.Root className="w-full">
+      <Table.Root
+        className="flex flex-col gap-10 w-full rounded-xl border border-gray-800 shadow-lg"
+        style={{
+          backgroundColor: 'rgba(24,24,27,0.60)',
+          backdropFilter: 'blur(10px)',
+          WebkitBackdropFilter: 'blur(16px)',
+        }}
+      >
         <Table.Header>
           <Table.Row>
             <Table.ColumnHeaderCell>ID</Table.ColumnHeaderCell>
@@ -87,7 +94,7 @@ function OrdersList({ orders, isLoading }: { orders: Order[]; isLoading: boolean
 
       <div className="flex flex-row gap-5 mt-5 items-center">
         <CreateOrder />
-                <p>
+        <p>
           Total orders: <b>{isLoading ? 'Loading...' : orders?.length || 0}</b>
         </p>
       </div>

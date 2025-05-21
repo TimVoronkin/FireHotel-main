@@ -42,7 +42,14 @@ function LockerList({
         <span>
           <h1 className="text-xl font-bold text-red-500">Branches Management</h1>
         </span>
-        <Table.Root className="w-full">
+        <Table.Root
+          className="flex flex-col gap-10 w-full rounded-xl border border-gray-800 shadow-lg"
+          style={{
+            backgroundColor: 'rgba(24,24,27,0.60)',
+            backdropFilter: 'blur(10px)',
+            WebkitBackdropFilter: 'blur(16px)',
+          }}
+        >
           <Table.Header>
             <Table.Row>
               <Table.ColumnHeaderCell>ID</Table.ColumnHeaderCell>
@@ -111,7 +118,14 @@ function LockerList({
                 </h1>
                 <p className="text-gray-600">Location: {lockers.find((locker) => locker.id === selectedLockerId)?.location}</p>
               </span>
-              <Table.Root className="w-full">
+              <Table.Root
+                className="flex flex-col gap-10 w-full rounded-xl border border-gray-800 shadow-lg"
+                style={{
+                  backgroundColor: 'rgba(24,24,27,0.60)',
+                  backdropFilter: 'blur(10px)',
+                  WebkitBackdropFilter: 'blur(16px)',
+                }}
+              >
                 <Table.Header>
                   <Table.Row>
                     <Table.ColumnHeaderCell>ID</Table.ColumnHeaderCell>
@@ -133,15 +147,14 @@ function LockerList({
                         <Table.Cell>{cell.size}</Table.Cell>
                         <Table.Cell>{cell.status}</Table.Cell>
                         <Table.Cell>
-                          <div className="flex flex-row gap-3">
-                          {!hideActions && (
-                          <div className="flex flex-row gap-3 items-center justify-center">
-                            
-                            <UpdateCell cell={cell} />
-                            <DeleteCell cell={cell} />
-                          </div>)}
+                          <div className="flex gap-3 ">
+                            {!hideActions && (
+                              <div className="flex flex-row gap-3 items-center justify-center">
+                                <UpdateCell cell={cell} />
+                                <DeleteCell cell={cell} />
+                              </div>
+                            )}
                             <CreateOrder defaultLockerId={selectedLockerId} defaultCellId={cell.id} />
-
                           </div>
                         </Table.Cell>
                       </Table.Row>
@@ -171,6 +184,7 @@ function LockerList({
                     `${lockers.find((locker) => locker.id === selectedLockerId)?.location || ''}, ${
                       lockers.find((locker) => locker.id === selectedLockerId)?.name || ''
                     }`,
+                    
                   )}`}
               ></iframe>
             )}

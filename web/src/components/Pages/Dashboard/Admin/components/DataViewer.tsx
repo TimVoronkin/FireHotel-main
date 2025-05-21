@@ -22,24 +22,28 @@ function DataViewer({
   orders: UseQueryResult<Order[]>;
   lockers: UseQueryResult<Locker[]>;
   cells: UseQueryResult<Cell[]>;
-}) {
+})
+
+{
   return (
-    <Flex className="">
-      {pathname.includes('/data-viewer/statistics') && (
-        <Statistics
-          users={users.data!}
-          orders={orders.data!}
-          lockers={lockers.data!}
-          isLoading={users.isLoading || orders.isLoading || lockers.isLoading}
-        />
-      )}
-      {pathname.includes('/data-viewer/users') && <UsersList users={users.data!} isLoading={users.isLoading} />}
-      {pathname.includes('/data-viewer/orders') && <OrdersList orders={orders.data!} isLoading={orders.isLoading} />}
-      {pathname.includes('/data-viewer/cells') && <CellsList cells={cells.data!} isLoading={cells.isLoading} />}
-      {pathname.includes('/data-viewer/lockers') && (
-        <LockerList lockers={lockers.data!} cells={cells.data!} isLoading={lockers.isLoading} />
-      )}
-    </Flex>
+    <div className="relative w-full">
+      <Flex className="relative z-10">
+        {pathname.includes('/data-viewer/statistics') && (
+          <Statistics
+            users={users.data!}
+            orders={orders.data!}
+            lockers={lockers.data!}
+            isLoading={users.isLoading || orders.isLoading || lockers.isLoading}
+          />
+        )}
+        {pathname.includes('/data-viewer/users') && <UsersList users={users.data!} isLoading={users.isLoading} />}
+        {pathname.includes('/data-viewer/orders') && <OrdersList orders={orders.data!} isLoading={orders.isLoading} />}
+        {pathname.includes('/data-viewer/cells') && <CellsList cells={cells.data!} isLoading={cells.isLoading} />}
+        {pathname.includes('/data-viewer/lockers') && (
+          <LockerList lockers={lockers.data!} cells={cells.data!} isLoading={lockers.isLoading} />
+        )}
+      </Flex>
+    </div>
   );
 }
 

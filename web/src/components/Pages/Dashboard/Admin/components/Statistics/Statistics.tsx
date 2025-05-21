@@ -9,7 +9,12 @@ function Statistics({ users, orders, lockers, isLoading }: { users: User[]; orde
       <span>
         <h1 className="text-xl font-bold text-red-500">Statistics</h1>
       </span>
-      <span className="flex flex-col gap-5 mt-5">
+      <span className="flex flex-col gap-5 mt-5 py-7 px-10 w-full rounded-xl border border-gray-800 shadow-lg"
+                style={{
+                  backgroundColor: 'rgba(24,24,27,0.60)',
+                  backdropFilter: 'blur(10px)',
+                  WebkitBackdropFilter: 'blur(16px)',
+                }}>
         <span className="flex flex-col gap-1 ">
         <p>Total users: <b>{isLoading ? 'Loading...' : users?.length || 0}</b></p>
         <p className="ml-5">Admin users: <b>{isLoading ? 'Loading...' : users?.filter((user) => user.role === 'admin').length || 0}</b></p>
