@@ -3,12 +3,6 @@ import { Button } from '@radix-ui/themes';
 import { useNavigate } from 'react-router';
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '../../ui/carousel';
 
-const hotelImages = [
-	'/public/hotel-1.jpg',
-	'/public/hotel-2.jpg',
-	'/public/hotel-3.jpg',
-];
-
 const testimonials = [
 	{
 		name: 'Jana Nováková',

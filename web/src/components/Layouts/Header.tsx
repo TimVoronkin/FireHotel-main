@@ -5,7 +5,15 @@ function Header() {
   const location = useLocation();
 
   return (
-    <header className="py-4 w-full flex flex-wrap items-center justify-between bg-gray-900 px-10">
+    <header
+      className="py-4 w-full flex flex-wrap items-center justify-between px-10 border-b border-gray-700/40 shadow-lg bg-gray-900/60 backdrop-blur-md"
+      style={{
+        backgroundColor: 'rgba(24,24,27,0.60)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        zIndex: 10
+      }}
+    >
       <Link to="/" className="flex items-center gap-4 p-3">
         <img src="/fire-tree.svg" alt="FireHotel logo" className="w-12 h-12" />
         <h1 className="text-3xl font-bold text-red-500">FireHotel</h1>

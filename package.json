@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "@react-google-maps/api": "^2.20.6",
-    "prettier": "^3.4.1"
+    "leaflet": "^1.9.4",
+    "prettier": "^3.4.1",
+    "react-leaflet": "^5.0.0"
   }
 }
