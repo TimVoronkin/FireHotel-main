@@ -35,7 +35,12 @@ function Auth() {
         userStore.setName(userInfo.name);
         userStore.setSurname(userInfo.last_name); // last_name from backend
       }
-      navigate('/dashboard/admin#account');
+      // Перенаправление в зависимости от роли
+      if (res.isAdmin) {
+        navigate('/dashboard/admin/data-viewer/statistics');
+      } else {
+        navigate('/dashboard/worker');
+      }
     }
   };
 
