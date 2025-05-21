@@ -19,6 +19,16 @@ const testimonials = [
 		text: 'Breakfasts are amazing, and the location is perfect — right in the city center. Thank you, fireHotel!',
 		image: '/public/person-3.jpg',
 	},
+  {
+    name: 'Tomáš Horák',
+    text: 'I had a great business trip at fireHotel. The conference room was well-equipped, and the staff was very professional.',
+    image: '/public/person-4.jpg',
+  },
+  {
+    name: 'Eva Černá',
+    text: 'fireHotel is my favorite place to stay when I visit the city. The atmosphere is cozy, and the service is top-notch.',
+    image: '/public/person-5.jpg',
+  },
 ];
 
 function Home() {
@@ -38,78 +48,76 @@ function Home() {
 
 			{/* Main Info */}
 			<section className="w-full max-w-6xl flex flex-col md:flex-row gap-10 items-center justify-between mb-16">
-				<div className="flex-1">
-					<h2 className="text-4xl font-bold text-orange-400 mb-6">Welcome to FireHotel!</h2>
-					<p className="text-2xl leading-relaxed mb-6 text-gray-200">
-						<span className="font-bold text-orange-400">FireHotel</span> is a modern hotel chain offering the perfect blend of luxury, comfort, and convenience for both leisure and business travelers.<br />
-						Enjoy breathtaking city views, world-class service, and a variety of amenities designed to make your stay truly special.
-					</p>
-					<p className="text-xl text-gray-300 mb-6">
-						Discover our signature restaurant, relax in the spa, or take a dip in our panoramic pool. Whether you are here for work or pleasure, fireHotel is your home away from home.
-					</p>
-					<Button
-						style={{ cursor: 'pointer' }}
-						variant="solid"
-						size={'4'}
-						mt={'5'}
-						onClick={() => navigate('/search')}
-					>
-						Book a Room
-					</Button>
-				</div>
-			</section>
-
-			{/* Features & Gallery */}
-			<section className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-10 items-start mb-16">
-				<div className="flex flex-col gap-6">
-					<h3 className="text-3xl font-bold text-orange-400 mb-2">Why Choose fireHotel?</h3>
-					<ul className="list-disc ml-6 mt-2 text-lg text-gray-200">
-						<li>Spacious and cozy rooms with modern design</li>
-						<li>Free Wi-Fi and 24/7 guest support</li>
-						<li>Signature restaurant and panoramic bar</li>
-						<li>Fitness center, swimming pool, and SPA zone</li>
-						<li>Conference halls for business events</li>
-						<li>Prime locations in city centers and scenic areas</li>
-						<li>Flexible booking and exclusive offers</li>
-						<li>Personalized service and guest privacy</li>
-					</ul>
-				</div>
-				<div className="flex flex-col gap-6">
-					<h3 className="text-3xl font-bold text-orange-400 mb-2">Gallery</h3>
-					<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-						<img src="/public/hotel-1.jpg" alt="Hotel Exterior 1" className="rounded-xl shadow-lg w-full h-48 object-cover border-2 border-gray-800" />
-						<img src="/public/hotel-2.jpg" alt="Hotel Exterior 2" className="rounded-xl shadow-lg w-full h-48 object-cover border-2 border-gray-800" />
-						<img src="/public/room-1.jpg" alt="Room 1" className="rounded-xl shadow-lg w-full h-48 object-cover border-2 border-gray-800" />
-						<img src="/public/room-2.jpg" alt="Room 2" className="rounded-xl shadow-lg w-full h-48 object-cover border-2 border-gray-800" />
-					</div>
-				</div>
-			</section>
-
-			{/* User Reviews */}
-			<section className="w-full max-w-3xl mt-8 mb-16">
-				<h2 className="text-3xl font-bold text-orange-400 mb-6 text-center">Guest Reviews</h2>
-				<div className="relative">
-					<Carousel>
-						<CarouselContent>
-							{testimonials.map((t, idx) => (
-								<CarouselItem key={idx}>
-									<div className="flex flex-col items-center p-6 bg-gray-900 rounded-xl shadow-md mx-2 border border-gray-800">
-										<img
-											src={t.image}
-											alt={t.name}
-											className="w-16 h-16 rounded-full mb-4 border-2 border-orange-400"
-										/>
-										<p className="text-lg italic mb-2 text-gray-200">“{t.text}”</p>
-										<span className="font-semibold text-orange-400">{t.name}</span>
-									</div>
-								</CarouselItem>
-							))}
-						</CarouselContent>
-						<CarouselPrevious />
-						<CarouselNext />
-					</Carousel>
-				</div>
-			</section>
+        <div className="flex-1 bg-gray-900/60 backdrop-blur-md rounded-xl border border-gray-800 shadow-lg p-8" style={{backgroundColor: 'rgba(24,24,27,0.60)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(16px)'}}>
+          <h2 className="text-4xl font-bold text-orange-400 mb-6">Welcome to FireHotel!</h2>
+          <p className="text-2xl leading-relaxed mb-6 text-gray-200">
+            <span className="font-bold text-orange-400">FireHotel</span> is a modern hotel chain offering the perfect blend of luxury, comfort, and convenience for both leisure and business travelers.<br />
+            Enjoy breathtaking city views, world-class service, and a variety of amenities designed to make your stay truly special.
+          </p>
+          <p className="text-xl text-gray-300 mb-6">
+            Discover our signature restaurant, relax in the spa, or take a dip in our panoramic pool. Whether you are here for work or pleasure, fireHotel is your home away from home.
+          </p>
+          <Button
+            style={{ cursor: 'pointer' }}
+            variant="solid"
+            size={'4'}
+            mt={'5'}
+            onClick={() => navigate('/search')}
+          >
+            Book a Room
+          </Button>
+        </div>
+      </section>
+      {/* Features & Gallery */}
+      <section className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-10 items-start mb-16">
+        <div className="flex flex-col gap-6 bg-gray-900/60 backdrop-blur-md rounded-xl border border-gray-800 shadow-lg p-8" style={{backgroundColor: 'rgba(24,24,27,0.60)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(16px)'}}>
+          <h3 className="text-3xl font-bold text-orange-400 mb-2">Why Choose fireHotel?</h3>
+          <ul className="list-disc ml-6 mt-2 text-lg text-gray-200">
+            <li>Spacious and cozy rooms with modern design</li>
+            <li>Free Wi-Fi and 24/7 guest support</li>
+            <li>Signature restaurant and panoramic bar</li>
+            <li>Fitness center, swimming pool, and SPA zone</li>
+            <li>Conference halls for business events</li>
+            <li>Prime locations in city centers and scenic areas</li>
+            <li>Flexible booking and exclusive offers</li>
+            <li>Personalized service and guest privacy</li>
+          </ul>
+        </div>
+        <div className="flex flex-col gap-6 bg-gray-900/60 backdrop-blur-md rounded-xl border border-gray-800 shadow-lg p-8" style={{backgroundColor: 'rgba(24,24,27,0.60)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(16px)'}}>
+          <h3 className="text-3xl font-bold text-orange-400 mb-2">Gallery</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <img src="/public/hotel-1.jpg" alt="Hotel Exterior 1" className="rounded-xl shadow-lg w-full h-48 object-cover border-2 border-gray-800" />
+            <img src="/public/hotel-2.jpg" alt="Hotel Exterior 2" className="rounded-xl shadow-lg w-full h-48 object-cover border-2 border-gray-800" />
+            <img src="/public/room-1.jpg" alt="Room 1" className="rounded-xl shadow-lg w-full h-48 object-cover border-2 border-gray-800" />
+            <img src="/public/room-2.jpg" alt="Room 2" className="rounded-xl shadow-lg w-full h-48 object-cover border-2 border-gray-800" />
+          </div>
+        </div>
+      </section>
+      {/* User Reviews */}
+      <section className="w-full max-w-3xl mt-8 mb-16">
+        <h2 className="text-3xl font-bold text-orange-400 mb-6 text-center">Guest Reviews</h2>
+        <div className="relative">
+          <Carousel>
+            <CarouselContent>
+              {testimonials.map((t, idx) => (
+                <CarouselItem key={idx}>
+                  <div className="flex flex-col items-center p-6 bg-gray-900/60 backdrop-blur-md rounded-xl shadow-md mx-2 border border-gray-800" style={{backgroundColor: 'rgba(24,24,27,0.60)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(16px)'}}>
+                    <img
+                      src={t.image}
+                      alt={t.name}
+                      className="w-16 h-16 rounded-full mb-4 border-2 border-orange-400"
+                    />
+                    <p className="text-lg italic mb-2 text-gray-200">“{t.text}”</p>
+                    <span className="font-semibold text-orange-400">{t.name}</span>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </div>
+      </section>
 		</div>
 	);
 }
