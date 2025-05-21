@@ -1,4 +1,5 @@
 import { Login } from '@/api/auth/login';
+import { getUserByUsername } from '@/api/users/getUserByUsername';
 import { Toaster } from '@/components/ui/sonner';
 import CrossCircled from '@/icons/CrossCircled';
 import useUserStore from '@/store/UserStore';
@@ -28,6 +29,12 @@ function Auth() {
       userStore.setUsername(username);
       userStore.setIsAuth(true);
       userStore.setIsAdmin(res.isAdmin);
+      // fetch user info for name and surname
+      const userInfo = await getUserByUsername(username);
+      if (userInfo) {
+        userStore.setName(userInfo.name);
+        userStore.setSurname(userInfo.last_name); // last_name from backend
+      }
       navigate('/dashboard/admin#account');
     }
   };

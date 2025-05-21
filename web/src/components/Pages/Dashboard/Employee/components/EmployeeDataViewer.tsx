@@ -10,7 +10,7 @@ import { Cell } from '@/types/cells';
 import CellsList from '../../Admin/components/Cells/CellsList';
 import LockerList from '../../Admin/components/Lockers/LockerList';
 
-function EmployeeDataViewer({
+function WorkerDataViewer({
   pathname,
   users,
   orders,
@@ -43,4 +43,4 @@ function EmployeeDataViewer({
   );
 }
 
-export default EmployeeDataViewer;
+export default WorkerDataViewer;

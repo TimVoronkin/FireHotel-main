@@ -13,7 +13,17 @@ import { Button } from '@radix-ui/themes';
 import { useEffect } from 'react';
 import CreateOrder from '../Orders/CreateOrder';
 
-function LockerList({ lockers, cells, isLoading, hideActions = false }: { lockers: Locker[]; cells: Cell[]; isLoading: boolean; hideActions?: boolean }) {
+function LockerList({
+  lockers,
+  cells,
+  isLoading,
+  hideActions = false,
+}: {
+  lockers: Locker[];
+  cells: Cell[];
+  isLoading: boolean;
+  hideActions?: boolean;
+}) {
   const [selectedLockerId, setSelectedLockerId] = useState<number | null>(null);
   const handleShowCells = (lockerId: number) => {
     setSelectedLockerId(selectedLockerId === lockerId ? null : lockerId);
@@ -99,9 +109,7 @@ function LockerList({ lockers, cells, isLoading, hideActions = false }: { locker
                 <h1 className="text-xl font-bold text-red-500">
                   Rooms in branch #{selectedLockerId} - {lockers.find((locker) => locker.id === selectedLockerId)?.name}
                 </h1>
-                <p className="text-gray-600">
-                  Location: {lockers.find((locker) => locker.id === selectedLockerId)?.location}
-                </p>
+                <p className="text-gray-600">Location: {lockers.find((locker) => locker.id === selectedLockerId)?.location}</p>
               </span>
               <Table.Root className="w-full">
                 <Table.Header>
@@ -111,7 +119,7 @@ function LockerList({ lockers, cells, isLoading, hideActions = false }: { locker
                     <Table.ColumnHeaderCell>Order ID</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Size</Table.ColumnHeaderCell>
                     <Table.ColumnHeaderCell>Status</Table.ColumnHeaderCell>
-                    {!hideActions && <Table.ColumnHeaderCell>Actions</Table.ColumnHeaderCell>}
+                    {<Table.ColumnHeaderCell>Actions</Table.ColumnHeaderCell>}
                   </Table.Row>
                 </Table.Header>
                 <Table.Body>
@@ -124,15 +132,18 @@ function LockerList({ lockers, cells, isLoading, hideActions = false }: { locker
                         <Table.Cell>{cell.order_id || '-'}</Table.Cell>
                         <Table.Cell>{cell.size}</Table.Cell>
                         <Table.Cell>{cell.status}</Table.Cell>
-                        {!hideActions && (
-                          <Table.Cell>
-                            <div className="flex flex-row gap-3 items-center justify-center">
-                              <UpdateCell cell={cell} />
-                              <DeleteCell cell={cell} />
-                              <CreateOrder defaultLockerId={selectedLockerId} defaultCellId={cell.id} />
-                            </div>
-                          </Table.Cell>
-                        )}
+                        <Table.Cell>
+                          <div className="flex flex-row gap-3">
+                          {!hideActions && (
+                          <div className="flex flex-row gap-3 items-center justify-center">
+                            
+                            <UpdateCell cell={cell} />
+                            <DeleteCell cell={cell} />
+                          </div>)}
+                            <CreateOrder defaultLockerId={selectedLockerId} defaultCellId={cell.id} />
+
+                          </div>
+                        </Table.Cell>
                       </Table.Row>
                     ))}
                 </Table.Body>

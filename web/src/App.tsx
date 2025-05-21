@@ -9,7 +9,7 @@ import ProtectedRoute from './components/utils/ProtectedRoute';
 import useUserStore from './store/UserStore';
 import Career from './components/Pages/Career/Career';
 import Auth from './components/Pages/Auth/Auth';
-import Employee from './components/Pages/Dashboard/Employee/Employee';
+import Worker from './components/Pages/Dashboard/Worker/Worker';
 import AdminDashboard from './components/Pages/Dashboard/Admin/AdminDashboard';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // import { getLockers } from '@/api/lockers/lockers'; // Import the getLockers function
@@ -47,8 +47,8 @@ function App() {
                 </>
               ) : (
                 <>
-                  <Route path="/dashboard/employee" element={<Employee />} />
-                  <Route path="/dashboard/employee/*" element={<Employee />} />
+                  <Route path="/dashboard/worker" element={<Worker />} />
+                  <Route path="/dashboard/worker/*" element={<Worker />} />
                 </>
               )}
             </Route>

@@ -6,6 +6,12 @@ import UpdateUser from './UpdateUser';
 import DeleteUser from './DeleteUser';
 
 function UsersList({ users, isLoading, hideActions = false }: { users: User[]; isLoading: boolean; hideActions?: boolean }) {
+  // Сортировка по id по возрастанию с учетом возможного undefined
+  const sortedUsers = [...users].sort((a, b) => {
+    if (a.role === 'admin' && b.role !== 'admin') return -1;
+    if (a.role !== 'admin' && b.role === 'admin') return 1;
+    return (a.id ?? 0) - (b.id ?? 0);
+  });
   return (
     <div className="flex flex-col gap-10">
       <span>
@@ -40,14 +46,16 @@ function UsersList({ users, isLoading, hideActions = false }: { users: User[]; i
               <Table.Cell>Loading...</Table.Cell>
             </Table.Row>
           ) : users !== undefined ? (
-            users.map((user: User) => (
+            sortedUsers.map((user: User) => (
               <Table.Row key={user.id}>
                 <Table.RowHeaderCell className="text-gray-500">{user.id}</Table.RowHeaderCell>
                 <Table.Cell>{user.username}</Table.Cell>
                 <Table.Cell>{user.name} {user.last_name}</Table.Cell>
                 <Table.Cell>📧 {user.email}</Table.Cell>
                 <Table.Cell>📞 +{user.phone}</Table.Cell>
-                <Table.Cell className="text-gray-500">{user.role}</Table.Cell>
+                <Table.Cell className="text-gray-500">
+                  {user.role === 'admin' ? '🛡️ admin' : user.role === 'worker' ? '💼 worker' : user.role}
+                </Table.Cell>
                 {!hideActions && (
                   <Table.Cell>
                     <div className="flex flex-row gap-5">

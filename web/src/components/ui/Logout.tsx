@@ -13,7 +13,7 @@ function Logout() {
     navigate('/');
   };
   return (
-    <Button className="w-fit" variant="outline" onClick={() => onLogoutHandler()}>
+    <Button className="h-full" variant="outline" onClick={() => onLogoutHandler()}>
       Logout
     </Button>
   );
