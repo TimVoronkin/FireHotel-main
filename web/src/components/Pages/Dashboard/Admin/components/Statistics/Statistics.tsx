@@ -5,11 +5,11 @@ import { Box } from '@radix-ui/themes';
 
 function Statistics({ users, orders, lockers, isLoading }: { users: User[]; orders: Order[]; lockers: Locker[]; isLoading: boolean }) {
   return (
-    <Box className="flex flex-col gap-10">
+    <Box>
       <span>
         <h1 className="text-xl font-bold text-red-500">Statistics</h1>
       </span>
-      <span className="flex flex-col gap-5 mt-5 py-7 px-10 w-full rounded-xl border border-gray-800 shadow-lg"
+      <span className="flex flex-col gap-5 mt-10 py-7 px-10 w-full rounded-xl border border-gray-800 shadow-lg"
                 style={{
                   backgroundColor: 'rgba(24,24,27,0.60)',
                   backdropFilter: 'blur(10px)',

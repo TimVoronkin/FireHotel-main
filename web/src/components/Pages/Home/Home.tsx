@@ -7,27 +7,27 @@ const testimonials = [
 	{
 		name: 'Jana Nováková',
 		text: 'fireHotel is the best place to relax! Spacious rooms, excellent service, and a stunning city view.',
-		image: '/public/person-1.jpg',
+		image: '/person-1.jpg',
 	},
 	{
 		name: 'Petr Dvořák',
 		text: 'I loved the pool and gym. The staff is always ready to help. Highly recommended!',
-		image: '/public/person-2.jpg',
+		image: '/person-2.jpg',
 	},
 	{
 		name: 'Lucie Svobodová',
 		text: 'Breakfasts are amazing, and the location is perfect — right in the city center. Thank you, fireHotel!',
-		image: '/public/person-3.jpg',
+		image: '/person-3.jpg',
 	},
   {
     name: 'Tomáš Horák',
     text: 'I had a great business trip at fireHotel. The conference room was well-equipped, and the staff was very professional.',
-    image: '/public/person-4.jpg',
+    image: '/person-4.jpg',
   },
   {
     name: 'Eva Černá',
     text: 'fireHotel is my favorite place to stay when I visit the city. The atmosphere is cozy, and the service is top-notch.',
-    image: '/public/person-5.jpg',
+    image: '/person-5.jpg',
   },
 ];
 
@@ -38,7 +38,7 @@ function Home() {
 			{/* Hero Carousel */}
 			<section className="w-full max-w-6xl mx-auto mt-0 mb-12">
         <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw] rounded-none overflow-hidden shadow-2xl flex items-center justify-center h-[600px]">
-          <img src="/public/room-4.jpg" alt="Room 4" className="w-full h-full object-cover" />
+          <img src="/room-4.jpg" alt="Room 4" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center h-full">
             <h1 className="text-6xl md:text-7xl font-extrabold text-white drop-shadow-lg text-center mb-4">FireHotel</h1>
             <h2 className="text-2xl md:text-3xl font-semibold text-orange-300 text-center">Experience comfort, style, and unforgettable moments</h2>
@@ -86,10 +86,10 @@ function Home() {
         <div className="flex flex-col gap-6 bg-gray-900/60 backdrop-blur-md rounded-xl border border-gray-800 shadow-lg p-8" style={{backgroundColor: 'rgba(24,24,27,0.60)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(16px)'}}>
           <h3 className="text-3xl font-bold text-orange-400 mb-2">Gallery</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <img src="/public/hotel-1.jpg" alt="Hotel Exterior 1" className="rounded-xl shadow-lg w-full h-48 object-cover border-2 border-gray-800" />
-            <img src="/public/hotel-2.jpg" alt="Hotel Exterior 2" className="rounded-xl shadow-lg w-full h-48 object-cover border-2 border-gray-800" />
-            <img src="/public/room-1.jpg" alt="Room 1" className="rounded-xl shadow-lg w-full h-48 object-cover border-2 border-gray-800" />
-            <img src="/public/room-2.jpg" alt="Room 2" className="rounded-xl shadow-lg w-full h-48 object-cover border-2 border-gray-800" />
+            <img src="/hotel-1.jpg" alt="Hotel Exterior 1" className="rounded-xl shadow-lg w-full h-48 object-cover border-2 border-gray-800" />
+            <img src="/hotel-2.jpg" alt="Hotel Exterior 2" className="rounded-xl shadow-lg w-full h-48 object-cover border-2 border-gray-800" />
+            <img src="/room-1.jpg" alt="Room 1" className="rounded-xl shadow-lg w-full h-48 object-cover border-2 border-gray-800" />
+            <img src="/room-2.jpg" alt="Room 2" className="rounded-xl shadow-lg w-full h-48 object-cover border-2 border-gray-800" />
           </div>
         </div>
       </section>

@@ -43,7 +43,7 @@ function Worker() {
       <aside className="">
         <WorkerNavigation />
       </aside>
-      <main className="flex-1 p-10">
+      <main className="flex-1 pl-10">
         {/* <h1 className="text-[40px] font-bold mb-8">Hi, Worker!</h1> */}
         <WorkerDataViewer
           pathname={pathname}

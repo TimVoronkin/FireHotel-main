@@ -7,43 +7,43 @@ const positions = [
 		title: 'Frontend Developer',
 		description:
 			'Develop beautiful and user-friendly interfaces for our guests and staff. React/TypeScript experience required.',
-		image: '/public/person-1.jpg',
+		image: '/person-1.jpg',
 	},
 	{
 		title: 'Backend Developer',
 		description:
 			'Build robust APIs and services for hotel management and guest experience. Node.js/NestJS experience preferred.',
-		image: '/public/person-2.jpg',
+		image: '/person-2.jpg',
 	},
 	{
 		title: 'Receptionist',
 		description:
 			'Be the face of FireHotel! Welcome guests, assist with check-in/check-out, and provide excellent service.',
-		image: '/public/person-3.jpg',
+		image: '/person-3.jpg',
 	},
 	{
 		title: 'Housekeeper',
 		description:
 			'Maintain the cleanliness and comfort of our rooms and public areas. Attention to detail and reliability are a must.',
-		image: '/public/person-4.jpg',
+		image: '/person-4.jpg',
 	},
 	{
 		title: 'Branch Staff',
 		description:
 			'Assist guests, manage bookings, and support daily hotel operations at our various locations.',
-		image: '/public/hotel-2.jpg',
+		image: '/hotel-2.jpg',
 	},
   {
     title: 'Marketing Specialist',
     description:
       'Help us promote FireHotel and reach new guests through creative marketing strategies and campaigns.',
-    image: '/public/hotel-1.jpg',
+    image: '/hotel-1.jpg',
   },
   {
     title: 'IT Support',
     description:
       'Provide technical support to our staff and ensure smooth operation of hotel systems and technology.',
-    image: '/public/hotel-3.jpg',
+    image: '/hotel-3.jpg',
   },
 ];
 

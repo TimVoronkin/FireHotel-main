@@ -2,10 +2,12 @@
 import Footer from './Footer';
 import Header from './Header';
 import { Outlet } from 'react-router';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 function RootLayout() {
   // Parallax effect for scattered objects (global)
+  const mouseRef = useRef({ x: 0.5, y: 0.5 });
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -13,12 +15,33 @@ function RootLayout() {
       objs.forEach((img) => {
         const speed = parseFloat((img as HTMLElement).getAttribute('data-parallax-speed') || '0.15');
         const rotate = (img as HTMLElement).getAttribute('data-rotate') || '0';
-        (img as HTMLElement).style.transform = `rotate(${rotate}deg) translateY(${scrollY * speed}px)`;
+        // mouse offset
+        const mx = parseFloat((img as HTMLElement).getAttribute('data-mouse-x') || '0');
+        const my = parseFloat((img as HTMLElement).getAttribute('data-mouse-y') || '0');
+        const mouseX = mouseRef.current.x;
+        const mouseY = mouseRef.current.y;
+        const mouseOffsetX = (mouseX - 0.5) * mx;
+        const mouseOffsetY = (mouseY - 0.5) * my;
+        (img as HTMLElement).style.transform =
+          `rotate(${rotate}deg) translateY(${scrollY * speed + mouseOffsetY}px) translateX(${mouseOffsetX}px)`;
       });
     };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseRef.current = {
+        x: e.clientX / window.innerWidth,
+        y: e.clientY / window.innerHeight,
+      };
+      handleScroll();
+    };
+
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('mousemove', handleMouseMove);
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
   }, []);
 
   return (
@@ -46,22 +69,27 @@ function RootLayout() {
           const left = `${seededRandom(seed + 1) * 90 + 2}%`;
           const size = 60 + seededRandom(seed + 2) * 60;
           const rotate = seededRandom(seed + 3);
-          const parallaxSpeed = 0.08 + seededRandom(seed + 4) * -0.5; 
+          const parallaxSpeed = 0.08 + seededRandom(seed + 4) * -0.5;
+          // Добавим индивидуальное смещение для мыши
+          const mouseX = (seededRandom(seed + 5) - 0.5) * 40; // от -20 до +20 px
+          const mouseY = (seededRandom(seed + 6) - 0.5) * 40;
           return (
             <img
               key={file}
-              src={`/public/objs/${file}`}
+              src={`/objs/${file}`}
               alt="bg-obj"
               className="parallax-obj"
               data-parallax-speed={parallaxSpeed}
               data-rotate={rotate}
+              data-mouse-x={mouseX}
+              data-mouse-y={mouseY}
               style={{
                 position: 'absolute',
                 top,
                 left,
                 width: size,
                 height: 'auto',
-                opacity: 0.1,
+                opacity: 0.2,
                 transform: `rotate(${rotate}deg)`,
                 zIndex: 0
               }}

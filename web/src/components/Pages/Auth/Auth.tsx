@@ -57,7 +57,7 @@ function Auth() {
       <Card className="min-w-[400px] md:w-[900px] sm:min-w-[500px]" style={{ padding: '5rem' }}>
         <Flex justify={'center'} py={'5'}>
           <Heading className="font-bold text-red-500" as="h1" size={'8'}>
-            Auth
+            Authorization
           </Heading>
         </Flex>
 
