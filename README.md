@@ -1,14 +1,13 @@
-# FireHotel – Dokumentace projektu
-
+# <img src="web/public/fire-tree.svg" alt="Logo" width="32"/> FireHotel – Dokumentace projektu 
 FireHotel je moderní webová aplikace pro správu hotelu, která je postavena na architektuře client-server s odděleným frontendem a backendem. Projekt využívá nejnovější technologie a best practices pro bezpečnost, škálovatelnost a uživatelský komfort.
 
-- **Backend:** NestJS (TypeScript), REST API, PostgreSQL, TypeORM
-- **Frontend:** React (TypeScript), Vite, TailwindCSS
-- **Bezpečnost:** JWT autentizace, role-based access control, hashování hesel (bcrypt), ochrana proti CSRF, XSS, SQL Injection
+- **Backend:** <img src="https://www.svgrepo.com/show/354107/nestjs.svg" alt="NestJS" width="24"/> NestJS (TypeScript), REST API, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" width="24"/> PostgreSQL, <img src="https://avatars.githubusercontent.com/u/20165699?s=200&v=4" alt="TypeORM" width="24"/> TypeORM 
+- **Frontend:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" width="24"/> React (TypeScript), <img src="https://vitejs.dev/logo.svg" alt="Vite" width="24"/> Vite, <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.d52e9897.svg" alt="TailwindCSS" width="24"/> TailwindCSS
+- **Bezpečnost:** <img src="https://jwt.io/img/pic_logo.svg" alt="JWT" width="24"/> JWT autentizace, role-based access control, hashování hesel (bcrypt), ochrana proti CSRF, XSS, SQL Injection
 - **Vývoj:** Striktní oddělení logiky, validace vstupů (DTO, class-validator), logování a auditní záznamy
 - **UI:** Responzivní design, role-based navigace, přehledné tabulky, grafy a filtry
 - **Databáze:** Normalizovaný model, vztahy mezi uživateli, rezervacemi, pokoji a skříňkami
-- **Testování a dokumentace:** Swagger pro API, komentáře ve zdrojovém kódu, manuální i automatizované testy
+- **Testování a dokumentace:** <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" alt="Swagger" width="24"/> Swagger pro API, komentáře ve zdrojovém kódu, manuální i automatizované testy
 
 Tato dokumentace popisuje jak funkční, tak technickou stránku projektu a slouží jako základ pro prezentaci i další rozvoj systému.
 
@@ -26,7 +25,7 @@ FireHotel je webová aplikace pro správu rezervací pokojů, uživatelů a hote
 ### Uživatelské role
 - **Administrátor**: kompletní správa uživatelů, pokojů, skříněk, buněk, rezervací, přístup ke statistikám a auditním záznamům.
 - **Pracovník**: správa rezervací, přiřazení pokojů/skříňkám, zobrazení statistik, omezená správa uživatelů.
-- **Host**: vytváření a správa vlastních rezervací, zobrazení dostupnosti pokojů/skříněk, úprava osobních údajů.
+- **Host**: zobrazení dostupnosti pokojů/skříňkám.
 
 ### Hlavní funkce systému
 - Registrace a přihlášení uživatelů s ověřením rolí a bezpečnou autentizací.
@@ -68,18 +67,18 @@ FireHotel je webová aplikace pro správu rezervací pokojů, uživatelů a hote
 FireHotel je postaven na vícevrstvé architektuře s oddělením backendu a frontendu. Komunikace probíhá přes REST API.
 
 - **Backend:**
-  - Framework: NestJS (TypeScript)
+  - Framework: <img src="https://www.svgrepo.com/show/354107/nestjs.svg" alt="NestJS" width="24"/> NestJS (TypeScript)
   - API: RESTful
-  - Databáze: PostgreSQL
-  - ORM: TypeORM
-  - Autentizace: JWT, role-based access control
+  - Databáze: <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" width="24"/> PostgreSQL
+  - ORM: <img src="https://avatars.githubusercontent.com/u/20165699?s=200&v=4" alt="TypeORM" width="24"/> TypeORM
+  - Autentizace: <img src="https://jwt.io/img/pic_logo.svg" alt="JWT" width="24"/> JWT, role-based access control
   - Struktura: moduly (users, orders, lockers, cells), entity, služby, kontrolery
   - Validace a zpracování chyb: globální exception filtry, DTO validace
 
 - **Frontend:**
-  - Framework: React (TypeScript)
-  - Build: Vite
-  - Stylování: TailwindCSS
+  - Framework: <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" width="24"/> React (TypeScript)
+  - Build: <img src="https://vitejs.dev/logo.svg" alt="Vite" width="24"/> Vite
+  - Stylování: <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.d52e9897.svg" alt="TailwindCSS" width="24"/> TailwindCSS
   - Stavová správa: React Context/Store
   - Struktura: komponenty podle stránek a funkcí, rozdělení na UI, Pages, Layouts
   - Komunikace s API: fetch/axios, vlastní hooky
