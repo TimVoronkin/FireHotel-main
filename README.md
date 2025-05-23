@@ -1,5 +1,17 @@
 # FireHotel – Dokumentace projektu
 
+FireHotel je moderní webová aplikace pro správu hotelu, která je postavena na architektuře client-server s odděleným frontendem a backendem. Projekt využívá nejnovější technologie a best practices pro bezpečnost, škálovatelnost a uživatelský komfort.
+
+- **Backend:** NestJS (TypeScript), REST API, PostgreSQL, TypeORM
+- **Frontend:** React (TypeScript), Vite, TailwindCSS
+- **Bezpečnost:** JWT autentizace, role-based access control, hashování hesel (bcrypt), ochrana proti CSRF, XSS, SQL Injection
+- **Vývoj:** Striktní oddělení logiky, validace vstupů (DTO, class-validator), logování a auditní záznamy
+- **UI:** Responzivní design, role-based navigace, přehledné tabulky, grafy a filtry
+- **Databáze:** Normalizovaný model, vztahy mezi uživateli, rezervacemi, pokoji a skříňkami
+- **Testování a dokumentace:** Swagger pro API, komentáře ve zdrojovém kódu, manuální i automatizované testy
+
+Tato dokumentace popisuje jak funkční, tak technickou stránku projektu a slouží jako základ pro prezentaci i další rozvoj systému.
+
 ## 1. SRS (Specifikace softwarových požadavků)
 
 FireHotel je webová aplikace pro správu rezervací pokojů, uživatelů a hotelových pokojů v rámci hotelového prostředí. Systém umožňuje:
@@ -13,7 +25,7 @@ FireHotel je webová aplikace pro správu rezervací pokojů, uživatelů a hote
 
 ### Uživatelské role
 - **Administrátor**: kompletní správa uživatelů, pokojů, skříněk, buněk, rezervací, přístup ke statistikám a auditním záznamům.
-- **Pracovník**: správa rezervací, přiřazení pokojů/skříněk, zobrazení statistik, omezená správa uživatelů.
+- **Pracovník**: správa rezervací, přiřazení pokojů/skříňkám, zobrazení statistik, omezená správa uživatelů.
 - **Host**: vytváření a správa vlastních rezervací, zobrazení dostupnosti pokojů/skříněk, úprava osobních údajů.
 
 ### Hlavní funkce systému
@@ -119,6 +131,39 @@ FireHotel je postaven na vícevrstvé architektuře s oddělením backendu a fro
 - Zálohování a obnova dat
 - Možnost rozšíření o další moduly (např. notifikace, platby)
 
+### 2.8 Vývoj, testování a nasazení
+
+- **Vývoj backendu:**
+  - Kód v adresáři `backend/src`, modulární struktura (každá doména má svůj modul)
+  - Spouštění přes NestJS CLI, konfigurace v `.env`
+  - ORM TypeORM pro práci s databází, migrace a validace schématu
+  - Swagger pro dokumentaci API
+
+- **Vývoj frontendu:**
+  - Kód v adresáři `web/src`, rozdělení na Pages, UI Components, Layouts, Store
+  - Vite pro rychlý build a vývoj
+  - TailwindCSS pro stylování a responzivitu
+  - Vlastní hooky pro komunikaci s API, Context pro správu stavu
+
+- **Testování:**
+  - Jednotkové testy backendových služeb a validací
+  - Ruční testování uživatelských scénářů na frontendu
+  - Kontrola bezpečnosti (vstupní data, autentizace, role)
+
+- **Nasazení:**
+  - Backend i frontend lze nasadit na libovolný server s Node.js a PostgreSQL
+  - Podpora cloudového nasazení (např. Heroku, Vercel, Railway)
+  - Oddělené buildy pro produkci a vývoj
+
+- **Co říct na obhajobě:**
+  - Proč byla zvolena vícevrstvá architektura a oddělení frontendu a backendu
+  - Jak je řešena bezpečnost (JWT, hashování, validace, role)
+  - Jak je navržen databázový model a vztahy
+  - Jak probíhá komunikace mezi frontendem a backendem (REST API, validace odpovědí)
+  - Jak je řešena rozšiřitelnost a údržba kódu
+  - Jaké technologie byly použity a proč
+  - Jaké byly hlavní výzvy a jak jste je řešili
+
 ## 3. Zdrojové kódy aplikace
 
 - **Backend:** `backend/src`
@@ -127,22 +172,33 @@ FireHotel je postaven na vícevrstvé architektuře s oddělením backendu a fro
 
 ## 4. Uživatelská příručka
 
-### Přihlášení
-- Otevřete webovou aplikaci a přihlaste se svým uživatelským jménem a heslem.
+### Práce se skříňkami a pokoji
+- Pouze prohlížení dostupných skříněk (filialek) a pokojů.
+- Zobrazení aktuální dostupnosti skříněk a pokojů.
 
-### Práce s objednávkami
-- Vytvoření nové objednávky: klikněte na „Nová objednávka“, vyplňte údaje a potvrďte.
-- Úprava/mazání objednávky: v seznamu objednávek zvolte akci.
-
-### Práce se skříňkami
-- Zobrazení dostupných skříněk a buněk.
-- Přiřazení objednávky ke skříňce (dle oprávnění).
 
 ## 5. Administrátorská příručka
 
-- **Správa uživatelů:** Přidání, úprava, mazání uživatelů, přiřazení rolí.
-- **Správa skříněk:** Přidání, úprava, mazání skříněk a buněk.
-- **Statistiky:** Zobrazení přehledů o využití systému.
+- **Správa uživatelů:**
+  - Přidání nového uživatele s volbou role (admin, pracovník)
+  - Úprava údajů uživatele (jméno, email, role, stav účtu)
+  - Resetování hesla uživatele
+  - Mazání uživatelů (s kontrolou závislostí v rezervacích)
+
+- **Správa skříněk a buněk:**
+  - Přidání nové skříňky a buněk, nastavení parametrů (název, adresa, kapacita)
+  - Úprava údajů skřínky a buněk (např. změna adresy, stavu, kapacity)
+  - Mazání skříněk a buněk (s kontrolou, zda nejsou přiřazeny k aktivním rezervacím)
+  - Zobrazení dostupnosti skříněk a buněk v reálném čase
+  - Přiřazení/odebrání rezervace ke konkrétní skříňce/buňce
+
+- **Statistiky a přehledy:**
+  - Zobrazení celkové obsazenosti hotelu, pokojů, skříněk a buněk
+  - Statistiky vytíženosti podle období, typu pokoje/skříňky, uživatele
+  - Export dat o rezervacích a obsazenosti do CSV/XLSX
+  - Grafické zobrazení trendů obsazenosti a vytíženosti
+  - Přehled nejčastějších uživatelů, nejvytíženějších pokojů/skříněk
+
 
 ## 6. Spuštění aplikace
 
