@@ -31,12 +31,6 @@ async function bootstrap() {
     swagger_1.SwaggerModule.setup('docs', app, document);
     const expressApp = app.getHttpAdapter().getInstance();
     expressApp.use(express.static((0, path_1.join)(__dirname, '..', '..', 'web', 'dist')));
-    expressApp.get('*', (req, res) => {
-        if (req.originalUrl.startsWith('/api') || req.originalUrl.startsWith('/docs')) {
-            return res.status(404).send('Not found');
-        }
-        res.sendFile((0, path_1.join)(__dirname, '..', '..', 'web', 'dist', 'index.html'));
-    });
     await app.listen((_a = process.env.PORT) !== null && _a !== void 0 ? _a : 3000);
 }
 bootstrap();

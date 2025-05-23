@@ -34,13 +34,15 @@ async function bootstrap() {
   const expressApp = app.getHttpAdapter().getInstance();
   // Serve static files from web/dist
   expressApp.use(express.static(join(__dirname, '..', '..', 'web', 'dist')));
+  
+  // HOTFIX
   // SPA fallback: отдавать index.html для всех не-API путей
-  expressApp.get('*', (req, res) => {
-    if (req.originalUrl.startsWith('/api') || req.originalUrl.startsWith('/docs')) {
-      return res.status(404).send('Not found');
-    }
-    res.sendFile(join(__dirname, '..', '..', 'web', 'dist', 'index.html'));
-  });
+  // expressApp.get('*', (req, res) => {
+  //   if (req.originalUrl.startsWith('/api') || req.originalUrl.startsWith('/docs')) {
+  //     return res.status(404).send('Not found');
+  //   }
+  //   res.sendFile(join(__dirname, '..', '..', 'web', 'dist', 'index.html'));
+  // });
 
   await app.listen(process.env.PORT ?? 3000);
 }
