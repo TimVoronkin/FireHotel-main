@@ -1,14 +1,6 @@
 # <img src="web/public/fire-tree.svg" alt="Logo" width="32"/> FireHotel – Dokumentace projektu 
 FireHotel je moderní webová aplikace pro správu hotelu, která je postavena na architektuře client-server s odděleným frontendem a backendem. Projekt využívá nejnovější technologie a best practices pro bezpečnost, škálovatelnost a uživatelský komfort.
 
-- **Backend:** <img src="https://www.svgrepo.com/show/354107/nestjs.svg" alt="NestJS" width="24"/> NestJS (TypeScript), REST API, <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" width="24"/> PostgreSQL, <img src="https://avatars.githubusercontent.com/u/20165699?s=200&v=4" alt="TypeORM" width="24"/> TypeORM 
-- **Frontend:** <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" width="24"/> React (TypeScript), <img src="https://vitejs.dev/logo.svg" alt="Vite" width="24"/> Vite, <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.d52e9897.svg" alt="TailwindCSS" width="24"/> TailwindCSS
-- **Bezpečnost:** <img src="https://jwt.io/img/pic_logo.svg" alt="JWT" width="24"/> JWT autentizace, role-based access control, hashování hesel (bcrypt), ochrana proti CSRF, XSS, SQL Injection
-- **Vývoj:** Striktní oddělení logiky, validace vstupů (DTO, class-validator), logování a auditní záznamy
-- **UI:** Responzivní design, role-based navigace, přehledné tabulky, grafy a filtry
-- **Databáze:** Normalizovaný model, vztahy mezi uživateli, rezervacemi, pokoji a skříňkami
-- **Testování a dokumentace:** <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" alt="Swagger" width="24"/> Swagger pro API, komentáře ve zdrojovém kódu, manuální i automatizované testy
-
 Tato dokumentace popisuje jak funkční, tak technickou stránku projektu a slouží jako základ pro prezentaci i další rozvoj systému.
 
 ## 1. SRS (Specifikace softwarových požadavků)
@@ -44,13 +36,6 @@ FireHotel je webová aplikace pro správu rezervací pokojů, uživatelů a hote
 - Podpora více uživatelských rolí a oprávnění.
 - Zálohování a obnova dat (automatizované zálohy databáze).
 - Lokalizace rozhraní (možnost přidání dalších jazyků).
-
-## 1.3 Omezení a předpoklady
-- Systém je určen pro správu jednoho hotelu.
-- Databáze PostgreSQL.
-- Backend: NestJS (TypeScript), Frontend: React (TypeScript), Vite, TailwindCSS.
-- Přístup k systému pouze pro registrované uživatele.
-- Integrace s e-mailovým serverem pro notifikace (volitelné).
 
 ## 1.4 Obchodní pravidla
 - Každý uživatel může mít více rezervací, ale v jeden čas může být v jednom pokoji pouze jedna rezervace.
