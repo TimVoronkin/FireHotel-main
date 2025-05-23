@@ -77,14 +77,12 @@ function DashboardLayout() {
               <span>
                 Hello, {name} {surname} !
               </span>
-              <div className="flex flex-row items-center mt-1 w-full">
+              <div className="flex flex-row items-center mt-1 w-full gap-5">
                 <div className="flex-1 flex justify-start">
                   <Logout />
                 </div>
                 <div className="flex-1 flex justify-end">
-                  <span className="text-gray-400">
-                    {isAdmin ? 'admin 🛡️' : 'worker 💼 '}
-                  </span>
+                  <span className="text-gray-400 whitespace-nowrap">{isAdmin ? 'admin 🛡️' : 'worker 💼 '}</span>
                 </div>
               </div>
             </div>

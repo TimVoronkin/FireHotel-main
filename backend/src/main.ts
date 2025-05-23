@@ -16,10 +16,11 @@ async function bootstrap() {
     credentials: true,
   });
   const config = new DocumentBuilder()
-    .setTitle('FireBox API')
+    .setTitle('FireHotel API')
     .setDescription(
       `
-      The FireBox API description.
+      The FireHotel API is a RESTful API that provides access to the FireHotel application.
+      It is built with NestJS and uses TypeScript for type safety and code quality.
       All endpoints require authorization with a Cookie named 'access_token'.
       Endpoint api/auth/login not require authorization`,
     )
