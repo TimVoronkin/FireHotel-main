@@ -34,8 +34,6 @@ FireHotel je webová aplikace pro správu rezervací pokojů, uživatelů a hote
 - Bezpečné ukládání hesel (hashování, salting), ochrana proti útokům (CSRF, XSS, SQL Injection).
 - Rychlá odezva systému (většina operací do 2 sekund).
 - Podpora více uživatelských rolí a oprávnění.
-- Zálohování a obnova dat (automatizované zálohy databáze).
-- Lokalizace rozhraní (možnost přidání dalších jazyků).
 
 ## 1.4 Obchodní pravidla
 - Každý uživatel může mít více rezervací, ale v jeden čas může být v jednom pokoji pouze jedna rezervace.
@@ -51,6 +49,14 @@ FireHotel je webová aplikace pro správu rezervací pokojů, uživatelů a hote
 
 FireHotel je postaven na vícevrstvé architektuře s oddělením backendu a frontendu. Komunikace probíhá přes REST API.
 
+- **Frontend:**
+  - Framework: <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" width="24"/> React (TypeScript)
+  - Build: <img src="https://vitejs.dev/logo.svg" alt="Vite" width="24"/> Vite
+  - Stylování: <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.d52e9897.svg" alt="TailwindCSS" width="24"/> TailwindCSS
+  - Stavová správa: React Context/Store
+  - Struktura: komponenty podle stránek a funkcí, rozdělení na UI, Pages, Layouts
+  - Komunikace s API: fetch/axios, vlastní hooky
+
 - **Backend:**
   - Framework: <img src="https://www.svgrepo.com/show/354107/nestjs.svg" alt="NestJS" width="24"/> NestJS (TypeScript)
   - API: RESTful
@@ -59,14 +65,6 @@ FireHotel je postaven na vícevrstvé architektuře s oddělením backendu a fro
   - Autentizace: <img src="https://jwt.io/img/pic_logo.svg" alt="JWT" width="24"/> JWT, role-based access control
   - Struktura: moduly (users, orders, lockers, cells), entity, služby, kontrolery
   - Validace a zpracování chyb: globální exception filtry, DTO validace
-
-- **Frontend:**
-  - Framework: <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" width="24"/> React (TypeScript)
-  - Build: <img src="https://vitejs.dev/logo.svg" alt="Vite" width="24"/> Vite
-  - Stylování: <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.d52e9897.svg" alt="TailwindCSS" width="24"/> TailwindCSS
-  - Stavová správa: React Context/Store
-  - Struktura: komponenty podle stránek a funkcí, rozdělení na UI, Pages, Layouts
-  - Komunikace s API: fetch/axios, vlastní hooky
 
 ### 2.2 Hlavní komponenty a moduly
 
@@ -110,12 +108,7 @@ FireHotel je postaven na vícevrstvé architektuře s oddělením backendu a fro
 - Přehledné tabulky, filtry, formuláře s validací
 - Zobrazení statistik a grafů
 
-### 2.7 Další vlastnosti
-- Lokalizace rozhraní (možnost přidání jazyků)
-- Zálohování a obnova dat
-- Možnost rozšíření o další moduly (např. notifikace, platby)
-
-### 2.8 Vývoj, testování a nasazení
+### 2.7 Vývoj, testování a nasazení
 
 - **Vývoj backendu:**
   - Kód v adresáři `backend/src`, modulární struktura (každá doména má svůj modul)
@@ -133,20 +126,6 @@ FireHotel je postaven na vícevrstvé architektuře s oddělením backendu a fro
   - Jednotkové testy backendových služeb a validací
   - Ruční testování uživatelských scénářů na frontendu
   - Kontrola bezpečnosti (vstupní data, autentizace, role)
-
-- **Nasazení:**
-  - Backend i frontend lze nasadit na libovolný server s Node.js a PostgreSQL
-  - Podpora cloudového nasazení (např. Heroku, Vercel, Railway)
-  - Oddělené buildy pro produkci a vývoj
-
-- **Co říct na obhajobě:**
-  - Proč byla zvolena vícevrstvá architektura a oddělení frontendu a backendu
-  - Jak je řešena bezpečnost (JWT, hashování, validace, role)
-  - Jak je navržen databázový model a vztahy
-  - Jak probíhá komunikace mezi frontendem a backendem (REST API, validace odpovědí)
-  - Jak je řešena rozšiřitelnost a údržba kódu
-  - Jaké technologie byly použity a proč
-  - Jaké byly hlavní výzvy a jak jste je řešili
 
 ## 3. Zdrojové kódy aplikace
 
